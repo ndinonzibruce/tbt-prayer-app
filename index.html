@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0051)file:///Users/ndinonzibruce/Downloads/index_13.html -->
+<!-- saved from url=(0051)file:///Users/ndinonzibruce/Downloads/index_14.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -115,6 +115,16 @@ textarea{min-height:80px;resize:vertical}
 .nav-arrow{background:none;border:1.5px solid #d0c9bc;border-radius:4px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;color:#333;font-family:'Nunito',sans-serif;flex-shrink:0;transition:all 0.15s}
 .nav-arrow:hover:not([disabled]){border-color:#a8844a;color:#a8844a}
 .nav-arrow[disabled]{opacity:0.3;cursor:default}
+
+.weekly-section{margin-top:20px}
+.weekly-hdr{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.weekly-title{font-size:11px;font-weight:700;color:#a8844a;text-transform:uppercase;letter-spacing:0.1em}
+.weekly-week{font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.06em}
+.weekly-card{background:#fff;border:1px solid #e8e4dc;border-radius:8px;padding:16px 18px}
+.weekly-label{font-size:10px;font-weight:700;color:#a8844a;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px}
+.weekly-item{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid #f0ede8;font-size:14px;color:#333;line-height:1.55;font-weight:500}
+.weekly-item:last-child{border-bottom:none}
+.weekly-dot{width:6px;height:6px;border-radius:50%;background:#a8844a;margin-top:7px;flex-shrink:0}
 .divider{height:1px;background:#eee;margin:16px 0}
 
 
@@ -281,6 +291,10 @@ textarea{min-height:80px;resize:vertical}
         </div>
         <div id="tc"><div class="progress-wrap"><div class="progress-info"><span class="progress-label">Today's progress</span><span class="progress-count">0 of 20 prayed for</span></div><div class="progress-bar-bg"><div class="progress-bar-fill" style="width:0%"></div></div></div><div class="card featured"><div class="ph"><button class="nav-arrow js-prev" disabled="">←</button><div class="av av-3">AB</div><div style="flex:1"><div class="pname">Ava Beil <span class="badge b-cs">CS</span> </div><div class="pmeta">All TBT · avalarson610@gmail.com </div></div><span class="badge b-never">Never prayed</span><button class="nav-arrow js-next">→</button></div><div><div style="font-size:13px;color:#aaa;padding:8px 0;font-weight:500">No specific requests added yet.</div></div><div class="pr-box" id="pr-box"><div class="pr-label" id="pr-label"></div><div class="pr-text" id="pr-text"></div></div><div class="timer-wrap"><button class="timer-toggle" id="timer-toggle" onclick="toggleTimer()">Show timer</button><span class="timer-display" id="timer-display">0:00</span></div><div class="actions"><button class="btn btn-dark js-prayed" data-id="17741417544940.6824287637200372">Mark as prayed</button><button class="btn btn-gold js-prayer" data-id="17741417544940.6824287637200372">Generate prayer guide</button><button class="btn btn-sm js-edit" data-id="17741417544940.6824287637200372">Edit</button></div></div></div>
       </div>
+      <div class="weekly-section" id="weekly-section" style="display: block;">
+        <div class="weekly-hdr"><span class="weekly-title">Pray for YSU &amp; TBT</span><span class="weekly-week" id="weekly-week-label">Week 13 of 52</span></div>
+        <div class="weekly-card"><div class="weekly-label">This week's prayer focus</div><div id="weekly-items"><div class="weekly-item"><div class="weekly-dot"></div><div>Pray for students to encourage one younger/new believer this week.</div></div><div class="weekly-item"><div class="weekly-dot"></div><div>Pray for opening the Bible together and praying together.</div></div><div class="weekly-item"><div class="weekly-dot"></div><div>Pray for multiplication of disciples.</div></div></div></div>
+      </div>
     </div>
 
     <div class="page" id="p-sched">
@@ -375,6 +389,229 @@ function pickPrayer(pid,dateStr){
   var p1=Math.abs(hash>>3)%t.pts.length;
   var p2=(p1+1)%t.pts.length;
   return{theme:t.theme,pts:[t.pts[p1],t.pts[p2]]};
+}
+
+
+var WEEKLY_PRAYERS = [
+  // Week 1
+  ["Pray for clear teaching of the Bible at TBT that shows who God is and what He calls us to do.",
+   "Pray for students to set aside time (10–15 minutes, 3+ days) to read Scripture and apply it.",
+   "Pray for each student to invite one specific person to Bible Talk and follow up with them."],
+  // Week 2
+  ["Pray for students to ask someone directly, 'Would you read the Bible with me?'",
+   "Pray for courage to speak about sin, Jesus, and repentance clearly in conversation.",
+   "Pray for non-Christians to ask honest questions about Jesus."],
+  // Week 3
+  ["Pray for students to name 2–3 non-Christian friends and pursue one intentional conversation.",
+   "Pray for listening well and caring more about others than being impressive.",
+   "Pray for the gospel to be explained simply and clearly in everyday settings."],
+  // Week 4
+  ["Pray for one-on-one Bible reading to begin between students and non-Christians.",
+   "Pray for follow-up conversations, not just one-time invites.",
+   "Pray for courage to bring up Jesus even when it feels uncomfortable."],
+  // Week 5
+  ["Pray for students to explain the gospel (sin, judgment, Jesus, response) clearly this week.",
+   "Pray for leaders to prioritize people over programs.",
+   "Pray for one student to take a step toward repentance and faith."],
+  // Week 6
+  ["Pray for students to initiate conversations after class or practice about spiritual things.",
+   "Pray for gentleness and respect in answering questions about Christianity.",
+   "Pray for open doors to speak about Jesus."],
+  // Week 7
+  ["Pray for new Bible reading partnerships (or joining a Quad) to start this week.",
+   "Pray for consistency in meeting weekly in the Word.",
+   "Pray for a non-Christian to say yes to reading the Bible."],
+  // Week 8
+  ["Pray for students to practice sharing the gospel with each other.",
+   "Pray for clarity and confidence when explaining Jesus' death and resurrection.",
+   "Pray for one person to respond to the gospel this week at YSU."],
+  // Week 9
+  ["Pray for students to read Scripture daily and share what they learn with someone else.",
+   "Pray for conversations that move from surface-level to spiritual.",
+   "Pray for others to see genuine faith and ask about it."],
+  // Week 10
+  ["Pray for students to pray by name for specific non-Christians.",
+   "Pray for opportunities to follow those prayers with real conversations.",
+   "Pray for at least one gospel conversation this week."],
+  // Week 11
+  ["Pray for students to take notes from teaching and apply it personally.",
+   "Pray for discussion of the Bible outside organized meetings.",
+   "Pray for non-Christians to understand what they hear at our meetings or Bible Studies."],
+  // Week 12
+  ["Pray for repentance in specific areas of sin.",
+   "Pray for honest accountability between students.",
+   "Pray for visible change that points others to Christ."],
+  // Week 13
+  ["Pray for students to encourage one younger/new believer this week.",
+   "Pray for opening the Bible together and praying together.",
+   "Pray for multiplication of disciples."],
+  // Week 14
+  ["Pray for intentional relationships across maturity levels.",
+   "Pray for humility in teaching and learning.",
+   "Pray for outreach through those relationships."],
+  // Week 15
+  ["Pray for small groups to open Scripture and apply it honestly.",
+   "Pray for vulnerability and real growth.",
+   "Pray for guests to hear the gospel clearly."],
+  // Week 16
+  ["Pray for students to encourage one another with Scripture.",
+   "Pray for Christ-centered conversations during the week.",
+   "Pray for those conversations to include non-Christians."],
+  // Week 17
+  ["Pray for students to intentionally spend time with non-Christian friends.",
+   "Pray for natural opportunities to bring up Jesus.",
+   "Pray for boldness to not avoid spiritual topics."],
+  // Week 18
+  ["Pray for students to invite someone to coffee to talk about life and faith.",
+   "Pray for asking thoughtful spiritual questions.",
+   "Pray for openness to reading the Bible together."],
+  // Week 19
+  ["Pray for follow-up with people who have shown interest.",
+   "Pray for second and third gospel conversations.",
+   "Pray for movement toward repentance and faith."],
+  // Week 20
+  ["Pray for students to see classrooms, teams, and jobs as mission fields.",
+   "Pray for one intentional gospel conversation in each space.",
+   "Pray for fruit from those conversations."],
+  // Week 21
+  ["Pray for leaders to invest time in people, not just planning.",
+   "Pray for Scripture to be opened in homes, dorms, and campus spaces.",
+   "Pray for multiplication of disciple-making relationships."],
+  // Week 22
+  ["Pray for students to take responsibility for ministry themselves.",
+   "Pray for clarity in who leaders are investing in.",
+   "Pray for growth through Word-centered relationships."],
+  // Week 23
+  ["Pray for leaders to invest time in people, not just planning.",
+   "Pray for Scripture to be opened in homes, dorms, and campus spaces.",
+   "Pray for multiplication of disciple-making relationships."],
+  // Week 24
+  ["Pray for students to take responsibility for ministry themselves.",
+   "Pray for clarity in who leaders are investing in.",
+   "Pray for growth through Word-centered relationships."],
+  // Week 25
+  ["Pray for leaders to invest time in people, not just planning.",
+   "Pray for Scripture to be opened in dorms, classrooms, and campus spaces.",
+   "Pray for students to take responsibility for ministry themselves."],
+  // Week 26
+  ["Pray for clarity in who leaders are investing in.",
+   "Pray for growth through Word-centered relationships.",
+   "Pray for multiplication of disciple-making relationships."],
+  // Week 27
+  ["Pray for students to clearly explain the gospel in simple language.",
+   "Pray for confidence in answering objections with gentleness.",
+   "Pray for real conversations, not vague spirituality."],
+  // Week 28
+  ["Pray for courage to call people to repentance.",
+   "Pray for non-Christians to understand who Jesus is.",
+   "Pray for faith responses to the gospel at YSU."],
+  // Week 29
+  ["Pray for students to clearly explain the gospel in simple language.",
+   "Pray for confidence in answering objections with gentleness.",
+   "Pray for real conversations, not vague spirituality."],
+  // Week 30
+  ["Pray for courage to call people to repentance.",
+   "Pray for non-Christians to understand who Jesus is.",
+   "Pray for faith responses to the gospel."],
+  // Week 31
+  ["Pray for students to clearly explain the gospel in simple language.",
+   "Pray for confidence in answering objections with gentleness.",
+   "Pray for real conversations, not vague spirituality."],
+  // Week 32
+  ["Pray for courage to call people to repentance.",
+   "Pray for non-Christians to understand who Jesus is.",
+   "Pray for faith responses to the gospel this week."],
+  // Week 33
+  ["Pray for students to begin discipling others intentionally.",
+   "Pray for growth in handling Scripture accurately.",
+   "Pray for multiplication of leaders at TBT."],
+  // Week 34
+  ["Pray for teaching to be clear and faithful to the Bible.",
+   "Pray for students to take responsibility for others' growth.",
+   "Pray for new disciple-making relationships to start."],
+  // Week 35
+  ["Pray for students to begin discipling others intentionally.",
+   "Pray for growth in handling Scripture accurately.",
+   "Pray for multiplication of leaders."],
+  // Week 36
+  ["Pray for teaching to be clear and faithful to the Bible.",
+   "Pray for students to take responsibility for others' growth.",
+   "Pray for new disciple-making relationships."],
+  // Week 37
+  ["Pray for TBT students at other campuses to stay in the Word.",
+   "Pray for them to start Bible reading with others.",
+   "Pray for gospel conversations in new environments."],
+  // Week 38
+  ["Pray for new groups and ministries to form from TBT students.",
+   "Pray for faithfulness in new contexts.",
+   "Pray for the gospel to spread beyond YSU."],
+  // Week 39
+  ["Pray for TBT students at other campuses to stay in the Word.",
+   "Pray for them to start Bible reading with others.",
+   "Pray for gospel conversations in new environments."],
+  // Week 40
+  ["Pray for new groups and ministries to form.",
+   "Pray for faithfulness in new contexts.",
+   "Pray for the gospel to spread beyond YSU."],
+  // Week 41
+  ["Pray for students to initiate gospel conversations, not wait.",
+   "Pray for using everyday conversations to point to Christ.",
+   "Pray for follow-up after invitations."],
+  // Week 42
+  ["Pray for persistence even after rejection.",
+   "Pray for boldness in initiating spiritual conversations.",
+   "Pray for at least one gospel conversation this week at YSU."],
+  // Week 43
+  ["Pray for students to initiate gospel conversations, not wait.",
+   "Pray for using everyday conversations to point to Christ.",
+   "Pray for follow-up after invitations."],
+  // Week 44
+  ["Pray for persistence even after rejection.",
+   "Pray for boldness in initiating spiritual conversations.",
+   "Pray for fruit from gospel conversations this week."],
+  // Week 45
+  ["Pray for reflection on growth in Scripture and obedience.",
+   "Pray for final gospel conversations before semester ends.",
+   "Pray for perseverance in discipleship."],
+  // Week 46
+  ["Pray for finishing the semester faithfully.",
+   "Pray for students not to drift as the semester winds down.",
+   "Pray for one last intentional gospel conversation before break."],
+  // Week 47
+  ["Pray for reflection on growth in Scripture and obedience.",
+   "Pray for final gospel conversations before semester ends.",
+   "Pray for perseverance in discipleship."],
+  // Week 48
+  ["Pray for finishing the semester faithfully.",
+   "Pray for students not to drift as the semester winds down.",
+   "Pray for one last intentional gospel conversation."],
+  // Week 49
+  ["Pray for faithfulness during breaks with family and friends.",
+   "Pray for gospel conversations at home.",
+   "Pray for preparation for the next semester."],
+  // Week 50
+  ["Pray for long-term faithfulness in disciple-making.",
+   "Pray for students to return to YSU ready to invest in others.",
+   "Pray for new students to join TBT next semester."],
+  // Week 51
+  ["Pray for faithfulness during breaks with family and friends.",
+   "Pray for gospel conversations at home.",
+   "Pray for preparation for the next semester."],
+  // Week 52
+  ["Pray for long-term faithfulness in disciple-making.",
+   "Pray for students to return to YSU ready to invest in others.",
+   "Pray for new students to join TBT."]
+];
+
+function getCurrentWeek(){
+  var now=new Date();
+  var start=new Date(now.getFullYear(),0,1);
+  return Math.min(52,Math.ceil(((now-start)/86400000+start.getDay()+1)/7));
+}
+
+function getWeeklyPrayers(){
+  var wk=getCurrentWeek();
+  return{week:wk,prayers:WEEKLY_PRAYERS[wk-1]||WEEKLY_PRAYERS[0]};
 }
 
 var people=JSON.parse(localStorage.getItem('tbt5')||'[]');
@@ -486,6 +723,8 @@ function renderToday(){
   if(nextBtn)nextBtn.addEventListener('click',function(){nxt()});
   // Timer wiring
   startTimer();
+  // Weekly prayer section
+  renderWeeklyPrayers();
 }
 
 function showPrayer(id){
@@ -612,6 +851,20 @@ function toggleTimer(){
       disp.textContent=m+':'+(s<10?'0':'')+s;
     }
   }
+}
+
+function renderWeeklyPrayers(){
+  var wp=getWeeklyPrayers();
+  var section=document.getElementById('weekly-section');
+  var lbl=document.getElementById('weekly-week-label');
+  var items=document.getElementById('weekly-items');
+  if(!section||!items)return;
+  if(!people.length){section.style.display='none';return;}
+  section.style.display='block';
+  if(lbl)lbl.textContent='Week '+wp.week+' of 52';
+  items.innerHTML=(wp.prayers||[]).map(function(p){
+    return '<div class="weekly-item"><div class="weekly-dot"></div><div>'+p+'</div></div>';
+  }).join('');
 }
 
 function save(){localStorage.setItem('tbt5',JSON.stringify(people))}
