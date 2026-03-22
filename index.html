@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0051)file:///Users/ndinonzibruce/Downloads/index_29.html -->
+<!-- saved from url=(0051)file:///Users/ndinonzibruce/Downloads/index_30.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -310,7 +310,7 @@ textarea{min-height:80px;resize:vertical}
         </div>
         <div class="streak-best" id="streak-best">Best: 1 days</div>
       </div>
-      <div class="stats" id="st"><div class="stat"><div class="stat-lbl">On today's list</div><div class="stat-val">1</div></div><div class="stat"><div class="stat-lbl">Prayed for today</div><div class="stat-val">2</div></div><div class="stat"><div class="stat-lbl">Total people</div><div class="stat-val">20</div></div></div>
+      <div class="stats" id="st"><div class="stat"><div class="stat-lbl">On today's list</div><div class="stat-val">1</div></div><div class="stat"><div class="stat-lbl">Prayed for today</div><div class="stat-val">5</div></div><div class="stat"><div class="stat-lbl">Total people</div><div class="stat-val">20</div></div></div>
       <div id="rest-day" style="display:none;text-align:center;padding:48px 24px">
         <div style="font-size:48px;margin-bottom:16px">🕊</div>
         <div style="font-size:20px;font-weight:700;margin-bottom:8px;color:#000">Rest day</div>
@@ -318,16 +318,13 @@ textarea{min-height:80px;resize:vertical}
       </div>
       <div id="ob" style="display:none">
         <div class="onboard">
-          <h3>Welcome to TBT Prayer 🙏</h3>
-          <p>This tool gives you a small group of TBT students to pray for each day. The list rotates so that every student gets prayed for at least once a month. Fridays and Saturdays are rest days.</p>
-          <p style="margin-top:8px;margin-bottom:20px">To get started, your list admin needs to import people from Clearstream — or if that's you, follow the steps below.</p>
-          <div class="steps">
-            <div class="step"><div class="step-num">Step 1</div><div class="step-desc">Click "Import" in the nav below and tap "Sync lists"</div></div>
-            <div class="step"><div class="step-num">Step 2</div><div class="step-desc">Select "All TBT" from the list and tap "Import selected list"</div></div>
-            <div class="step"><div class="step-num">Step 3</div><div class="step-desc">Come back here — today's people will be ready to pray for</div></div>
-          </div>
-          <button class="btn btn-gold" onclick="go(&#39;import&#39;)">Import people</button>
-        </div>
+          <div style="font-size:48px;margin-bottom:16px">🙏</div>
+          <h3>TBT Prayer Tool</h3>
+          <p>A daily prayer tool for TBT students at YSU. Each day you get a small group of people to pray for — the list rotates so everyone gets prayed for at least once a month.</p>
+          <p style="margin-top:8px;margin-bottom:24px;color:#a8844a;font-weight:700;font-size:13px">Tap below to load your prayer list</p>
+          <button class="btn btn-gold" id="load-btn" onclick="loadFromServer()" style="font-size:16px;padding:14px 32px;width:100%;max-width:320px">Load prayer list</button>
+          <div id="load-status" style="margin-top:14px;font-size:13px;color:#888;font-weight:500"></div>
+        </div>        </div>
       </div>
       <div id="pu" style="display: block;">
         <div class="rot-bar">
@@ -337,9 +334,9 @@ textarea{min-height:80px;resize:vertical}
             <button class="pill" onclick="setF(&#39;never&#39;,this)">Never prayed</button>
           </div>
         </div>
-        <div id="tc"><div class="progress-wrap"><div class="progress-info"><span class="progress-count">2 of 20 prayed for</span></div><div class="progress-bar-bg"><div class="progress-bar-fill" style="width:10%"></div></div></div><div class="monthly-stat"><span class="monthly-left">March progress</span><span class="monthly-right">2 / 20 people</span></div><div class="card featured"><div class="ph"><button class="nav-arrow js-prev" disabled="">←</button><div class="av av-3">AB</div><div style="flex:1"><div class="pname">Ava Beil </div></div><span class="badge b-recent">Today</span><button class="nav-arrow js-next">→</button></div><div><div style="font-size:13px;color:#aaa;padding:8px 0;font-weight:500">No specific requests added yet.</div></div><div class="pr-box" id="pr-box"><div class="pr-label" id="pr-label"></div><div class="pr-text" id="pr-text"></div></div><div class="timer-wrap"><button class="timer-toggle" id="timer-toggle" onclick="toggleTimer()">Show timer</button><span class="timer-display" id="timer-display">0:00</span></div><div class="actions"><button class="btn btn-dark js-prayed" data-id="17741417544940.6824287637200372">Mark as prayed</button><button class="btn btn-gold js-prayer" data-id="17741417544940.6824287637200372">Generate prayer guide</button><button class="btn btn-sm js-edit" data-id="17741417544940.6824287637200372">Edit</button></div></div></div>
+        <div id="tc"><div class="progress-wrap"><div class="progress-info"><span class="progress-count">5 of 20 prayed for</span></div><div class="progress-bar-bg"><div class="progress-bar-fill" style="width:25%"></div></div></div><div class="monthly-stat"><span class="monthly-left">March progress</span><span class="monthly-right">5 / 20 people</span></div><div class="card featured"><div class="ph"><button class="nav-arrow js-prev" disabled="">←</button><div class="av av-3">AB</div><div style="flex:1"><div class="pname">Ava Beil </div></div><span class="badge b-recent">Today</span><button class="nav-arrow js-next">→</button></div><div><div style="font-size:13px;color:#aaa;padding:8px 0;font-weight:500">No specific requests added yet.</div></div><div class="pr-box" id="pr-box"><div class="pr-label" id="pr-label"></div><div class="pr-text" id="pr-text"></div></div><div class="timer-wrap"><button class="timer-toggle" id="timer-toggle" onclick="toggleTimer()">Show timer</button><span class="timer-display" id="timer-display">0:00</span></div><div class="actions"><button class="btn btn-dark js-prayed" data-id="17741417544940.6824287637200372">Mark as prayed</button><button class="btn btn-gold js-prayer" data-id="17741417544940.6824287637200372">Generate prayer guide</button><button class="btn btn-sm js-edit" data-id="17741417544940.6824287637200372">Edit</button></div></div></div>
       </div>
-      <div class="prayed-list" id="prayed-list" style="display: block;"><div class="prayed-hdr">Prayed for today (2)</div><div class="prayed-item"><div class="prayed-check">✓</div><div>Ava Beil</div></div><div class="prayed-item"><div class="prayed-check">✓</div><div>Brooke Rachau</div></div></div>
+      <div class="prayed-list" id="prayed-list" style="display: block;"><div class="prayed-hdr">Prayed for today (5)</div><div class="prayed-item"><div class="prayed-check">✓</div><div>Ava Beil</div></div><div class="prayed-item"><div class="prayed-check">✓</div><div>Brooke Rachau</div></div><div class="prayed-item"><div class="prayed-check">✓</div><div>Olivia Elias</div></div><div class="prayed-item"><div class="prayed-check">✓</div><div>Allison Young</div></div><div class="prayed-item"><div class="prayed-check">✓</div><div>George Morar</div></div></div>
       <div class="weekly-section" id="weekly-section" style="display: block;">
         <div class="weekly-hdr"><span class="weekly-title">Pray for YSU &amp; TBT</span><span class="weekly-week" id="weekly-week-label">Week 13 of 52</span></div>
         <div class="weekly-card"><div class="weekly-label">This week's prayer focus</div><div id="weekly-items"><div class="weekly-item"><div class="weekly-dot"></div><div>Pray for students to encourage one younger/new believer this week.</div></div><div class="weekly-item"><div class="weekly-dot"></div><div>Pray for opening the Bible together and praying together.</div></div><div class="weekly-item"><div class="weekly-dot"></div><div>Pray for multiplication of disciples.</div></div></div></div>
@@ -349,7 +346,7 @@ textarea{min-height:80px;resize:vertical}
     <div class="page" id="p-people">
       <h2>All people</h2><p class="sub">Full TBT prayer list, sorted by who needs prayer most.</p>
       <div style="margin-bottom:16px"><input type="search" placeholder="Search by name..." oninput="renderPpl(this.value)"></div>
-      <div id="pl"></div>
+      <div id="pl"><div class="prow"><div class="av-sm av-1">TM</div><div class="prow-info"><div class="prow-name">Travis Mills</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417545000.1839014808009486">Remove</button></div><div class="prow"><div class="av-sm av-3">BM</div><div class="prow-info"><div class="prow-name">Bryce Moldovan</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417545020.9097749302298475">Remove</button></div><div class="prow"><div class="av-sm av-2">JD</div><div class="prow-info"><div class="prow-name">Jessica Deal</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417545060.1172692012365385">Remove</button></div><div class="prow"><div class="av-sm av-2">SO</div><div class="prow-info"><div class="prow-name">Sam Osborn</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417545110.4097119328882438">Remove</button></div><div class="prow"><div class="av-sm av-3">JM</div><div class="prow-info"><div class="prow-name">John Morris</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417545150.5366048512521657">Remove</button></div><div class="prow"><div class="av-sm av-0">LH</div><div class="prow-info"><div class="prow-name">Lance Hall</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417545190.8332501308393266">Remove</button></div><div class="prow"><div class="av-sm av-0">AS</div><div class="prow-info"><div class="prow-name">Allison Schrock</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417545240.5343557291297457">Remove</button></div><div class="prow"><div class="av-sm av-2">AM</div><div class="prow-info"><div class="prow-name">Anthony Mazzella</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417545290.7868417380203926">Remove</button></div><div class="prow"><div class="av-sm av-0">AS</div><div class="prow-info"><div class="prow-name">Anthony Steiner</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417545330.29721785135243006">Remove</button></div><div class="prow"><div class="av-sm av-0">AS</div><div class="prow-info"><div class="prow-name">Anna Shevock</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417545380.362315013173964">Remove</button></div><div class="prow"><div class="av-sm av-1">AH</div><div class="prow-info"><div class="prow-name">Asher Handrych</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417545420.3009006067323149">Remove</button></div><div class="prow"><div class="av-sm av-0">BR</div><div class="prow-info"><div class="prow-name">Boaz Reigstad</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417545470.5372795503280225">Remove</button></div><div class="prow"><div class="av-sm av-0">CM</div><div class="prow-info"><div class="prow-name">Caleb Mercer</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417545520.8446506724425237">Remove</button></div><div class="prow"><div class="av-sm av-2">CS</div><div class="prow-info"><div class="prow-name">Claire Sweeney</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417545560.01463839181701665">Remove</button></div><div class="prow"><div class="av-sm av-2">CC</div><div class="prow-info"><div class="prow-name">Conner Cerneka</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417545610.5672596263684483">Remove</button></div><div class="prow"><div class="av-sm av-3">AB</div><div class="prow-info"><div class="prow-name">Ava Beil</div><div class="prow-meta">All TBT</div></div><span class="badge b-recent" style="margin-right:8px">Today</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417544940.6824287637200372">Remove</button></div><div class="prow"><div class="av-sm av-0">BR</div><div class="prow-info"><div class="prow-name">Brooke Rachau</div><div class="prow-meta">All TBT</div></div><span class="badge b-recent" style="margin-right:8px">Today</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417544960.4955696667904892">Remove</button></div><div class="prow"><div class="av-sm av-0">OE</div><div class="prow-info"><div class="prow-name">Olivia Elias</div><div class="prow-meta">All TBT</div></div><span class="badge b-recent" style="margin-right:8px">Today</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417544970.26396507692494964">Remove</button></div><div class="prow"><div class="av-sm av-2">AY</div><div class="prow-info"><div class="prow-name">Allison Young</div><div class="prow-meta">All TBT</div></div><span class="badge b-recent" style="margin-right:8px">Today</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417544980.4144086438771948">Remove</button></div><div class="prow"><div class="av-sm av-0">GM</div><div class="prow-info"><div class="prow-name">George Morar</div><div class="prow-meta">All TBT</div></div><span class="badge b-recent" style="margin-right:8px">Today</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417544990.031334058137891474">Remove</button></div></div>
     </div>
 
     <div class="page" id="p-add">
@@ -374,17 +371,23 @@ Needs to hear the gospel clearly"></textarea></div>
       <div class="card">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid #eee">
           <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#a8844a">Select a list</div>
-          <button class="btn btn-sm" id="sb" onclick="syncLists()">Sync lists</button>
+          <button class="sync-btn" id="sb" onclick="syncLists()">Sync lists</button>
         </div>
-        <div id="cl"><div class="empty" style="padding:1rem 0">Click "Sync lists" above to load your Clearstream lists.</div></div>
+        <div id="cl"><div class="li sel" onclick="selL(377023)"><div class="li-name">All TBT</div><div class="li-ct">231</div></div><div class="li" onclick="selL(377029)"><div class="li-name">Assimilation Pipeline</div><div class="li-ct">6</div></div><div class="li" onclick="selL(377024)"><div class="li-name">Bible Talk and Prayer</div><div class="li-ct">114</div></div><div class="li" onclick="selL(377025)"><div class="li-name">BTP people who have missed 2 weeks</div><div class="li-ct">63</div></div><div class="li" onclick="selL(377026)"><div class="li-name">Never came to TBT in 2026</div><div class="li-ct">5</div></div><div class="li" onclick="selL(377742)"><div class="li-name">New from SMS</div><div class="li-ct">5</div></div><div class="li" onclick="selL(377027)"><div class="li-name">TBT Sunday</div><div class="li-ct">121</div></div><div class="li" onclick="selL(377028)"><div class="li-name">TBT Sunday people who have missed 2 weeks </div><div class="li-ct">38</div></div></div>
         <button class="btn btn-gold" id="ib" onclick="importList()" style="margin-top:12px">Import selected list</button>
+      </div>
+      <div class="card">
+        <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#a8844a;margin-bottom:10px">Share with team</div>
+        <div style="font-size:13px;color:#555;font-weight:500;line-height:1.7;margin-bottom:12px">Once you've imported everyone, tap "Publish list to team" so anyone who opens the app loads the list automatically — no import needed on their end.</div>
+        <button class="btn btn-dark" id="publish-btn" onclick="publishToTeam()">Publish list to team</button>
+        <div id="publish-toast" style="display:none;margin-top:10px;font-size:13px;font-weight:600;color:#1a6b3a"></div>
       </div>
       <div class="card" style="font-size:13px;color:#666;line-height:1.8;font-weight:500">Connected to <strong style="color:#000">The Bible Talks</strong> (Old North Church) via tbt-prayer-server.onrender.com</div>
     </div>
 
 
   </div>
-</div>
+
 <script>
 var S='https://tbt-prayer-server.onrender.com';
 var DA=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
@@ -1017,6 +1020,73 @@ function renderPrayedList(){
     }).join('');
 }
 
+async function publishToTeam(){
+  var btn=document.getElementById('publish-btn');
+  var toast=document.getElementById('publish-toast');
+  if(!people.length){if(toast){toast.textContent='No people to publish — import first.';toast.style.color='#8a1a1a';toast.style.display='block';}return;}
+  btn.textContent='Publishing...';btn.disabled=true;
+  try{
+    // Strip lastPrayed before publishing so everyone starts fresh
+    var toPublish=people.map(function(p){
+      return{id:p.id,first:p.first,last:p.last,role:p.role,email:p.email,requests:p.requests,notes:p.notes,lastPrayed:null,csId:p.csId};
+    });
+    var r=await fetch(S+'/people',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({people:toPublish})});
+    var d=await r.json();
+    if(d.ok){
+      toast.textContent='Published '+d.count+' people to the team. They will auto-load for anyone who opens the app fresh.';
+      toast.style.color='#1a6b3a';toast.style.display='block';
+    } else {
+      throw new Error(JSON.stringify(d));
+    }
+  }catch(e){
+    toast.textContent='Publish failed: '+e.message;
+    toast.style.color='#8a1a1a';toast.style.display='block';
+  }
+  btn.textContent='Publish list to team';btn.disabled=false;
+}
+
+async function loadFromServer(){
+  var btn=document.getElementById('load-btn');
+  var status=document.getElementById('load-status');
+  if(btn){btn.textContent='Loading...';btn.disabled=true;}
+  if(status)status.textContent='Connecting to server...';
+  try{
+    var r=await fetch(S+'/people');
+    var d=await r.json();
+    if(d.people&&d.people.length>0){
+      people=d.people;
+      save();
+      updStats();
+      renderToday();
+      renderPpl();
+      if(status)status.textContent='';
+    } else {
+      if(btn){btn.textContent='Load prayer list';btn.disabled=false;}
+      if(status)status.textContent='No list found on server. Ask Bruce to publish the list first.';
+    }
+  }catch(e){
+    if(btn){btn.textContent='Load prayer list';btn.disabled=false;}
+    if(status)status.textContent='Could not connect. Check your internet and try again.';
+  }
+}
+
+async function autoPullFromServer(){
+  if(people.length>0)return;
+  try{
+    var r=await fetch(S+'/people');
+    var d=await r.json();
+    if(d.people&&d.people.length>0){
+      people=d.people;
+      save();
+      updStats();
+      renderToday();
+      renderPpl();
+    }
+  }catch(e){
+    console.log('Auto-pull failed:', e.message);
+  }
+}
+
 function save(){localStorage.setItem('tbt5',JSON.stringify(people))}
 
 function go(page){
@@ -1029,7 +1099,8 @@ function go(page){
   if(page==='import')renderLists();
 }
 
-renderToday();renderSched();renderPpl();renderLists();renderEtags();
+renderToday();renderPpl();renderLists();
+autoPullFromServer();
 syncLists();
 </script>
 
