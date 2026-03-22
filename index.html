@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0051)file:///Users/ndinonzibruce/Downloads/index_22.html -->
+<!-- saved from url=(0051)file:///Users/ndinonzibruce/Downloads/index_26.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -326,7 +326,7 @@ textarea{min-height:80px;resize:vertical}
             <button class="pill" onclick="setF(&#39;never&#39;,this)">Never prayed</button>
           </div>
         </div>
-        <div id="tc"><div class="progress-wrap"><div class="progress-info"><span class="progress-count">2 of 20 prayed for</span></div><div class="progress-bar-bg"><div class="progress-bar-fill" style="width:10%"></div></div></div><div class="monthly-stat"><span class="monthly-left">This month</span><span class="monthly-right">2 of 20 people prayed for in March </span></div><div class="card featured"><div class="ph"><button class="nav-arrow js-prev" disabled="">←</button><div class="av av-3">AB</div><div style="flex:1"><div class="pname">Ava Beil <span class="badge b-cs">CS</span> </div><div class="pmeta">All TBT · avalarson610@gmail.com </div></div><span class="badge b-recent">Today</span><button class="nav-arrow js-next">→</button></div><div><div style="font-size:13px;color:#aaa;padding:8px 0;font-weight:500">No specific requests added yet.</div></div><div class="pr-box" id="pr-box"><div class="pr-label" id="pr-label"></div><div class="pr-text" id="pr-text"></div></div><div class="timer-wrap"><button class="timer-toggle" id="timer-toggle" onclick="toggleTimer()">Show timer</button><span class="timer-display" id="timer-display">0:00</span></div><div class="actions"><button class="btn btn-dark js-prayed" data-id="17741417544940.6824287637200372">Mark as prayed</button><button class="btn btn-gold js-prayer" data-id="17741417544940.6824287637200372">Generate prayer guide</button><button class="btn btn-sm js-edit" data-id="17741417544940.6824287637200372">Edit</button></div></div></div>
+        <div id="tc"><div class="progress-wrap"><div class="progress-info"><span class="progress-count">2 of 20 prayed for</span></div><div class="progress-bar-bg"><div class="progress-bar-fill" style="width:10%"></div></div></div><div class="monthly-stat"><span class="monthly-left">March progress</span><span class="monthly-right">2 / 20 people</span></div><div class="card featured"><div class="ph"><button class="nav-arrow js-prev" disabled="">←</button><div class="av av-3">AB</div><div style="flex:1"><div class="pname">Ava Beil <span class="badge b-cs">CS</span> </div><div class="pmeta">All TBT · avalarson610@gmail.com </div></div><span class="badge b-recent">Today</span><button class="nav-arrow js-next">→</button></div><div><div style="font-size:13px;color:#aaa;padding:8px 0;font-weight:500">No specific requests added yet.</div></div><div class="pr-box" id="pr-box"><div class="pr-label" id="pr-label"></div><div class="pr-text" id="pr-text"></div></div><div class="timer-wrap"><button class="timer-toggle" id="timer-toggle" onclick="toggleTimer()">Show timer</button><span class="timer-display" id="timer-display">0:00</span></div><div class="actions"><button class="btn btn-dark js-prayed" data-id="17741417544940.6824287637200372">Mark as prayed</button><button class="btn btn-gold js-prayer" data-id="17741417544940.6824287637200372">Generate prayer guide</button><button class="btn btn-sm js-edit" data-id="17741417544940.6824287637200372">Edit</button></div></div></div>
       </div>
       <div class="weekly-section" id="weekly-section" style="display: block;">
         <div class="weekly-hdr"><span class="weekly-title">Pray for YSU &amp; TBT</span><span class="weekly-week" id="weekly-week-label">Week 13 of 52</span></div>
@@ -733,7 +733,7 @@ function renderToday(){
     +'<div class="progress-info"><span class="progress-count">'+prayedToday+' of '+fp.length+' prayed for</span></div>'
     +'<div class="progress-bar-bg"><div class="progress-bar-fill" style="width:'+pct+'%"></div></div>'
     +'</div>'
-    +'<div class="monthly-stat"><span class="monthly-left">This month</span><span class="monthly-right">'+getMonthlyCount()+' of '+people.length+' people prayed for in '+new Date().toLocaleDateString("en-US",{month:"long"})+' </span></div>'
+    +'<div class="monthly-stat"><span class="monthly-left">'+new Date().toLocaleDateString("en-US",{month:"long"})+' progress</span><span class="monthly-right">'+getMonthlyCount()+' / '+people.length+' people</span></div>'
     +'<div class="card featured">'
     +'<div class="ph">'
     +'<button class="nav-arrow js-prev"'+(idx<=0?' disabled':'')+'>&#8592;</button>'
@@ -814,24 +814,40 @@ async function syncLists(){
 async function importList(){
   var list=lists.find(function(l){return l.id===selId});if(!list)return;
   var toast=document.getElementById('it');toast.style.display='none';
-  var btn=document.getElementById('ib');btn.textContent='Importing...';btn.disabled=true;
+  var btn=document.getElementById('ib');btn.disabled=true;
   try{
-    var page=1,added=0;
-    while(true){
-      var r=await fetch(S+'/cs/subscribers?list_id='+list.id+'&page='+page+'&per_page=100');
-      var d=await r.json();var subs=d.data||[];if(!subs.length)break;
-      for(var i=0;i<subs.length;i++){
-        var s=subs[i];
-        if(people.find(function(x){return x.csId===s.id}))continue;
-        people.push({id:Date.now()+'_'+Math.floor(Math.random()*1000000),first:s.first||'',last:s.last||'',role:(s.lists&&s.lists[0])?s.lists[0].name:'Student',email:s.email||'',requests:'',notes:'',lastPrayed:null,csId:s.id});
+    // First fetch page 1 to find out total pages
+    btn.textContent='Checking list...';
+    var r=await fetch(S+'/cs/subscribers?list_id='+list.id+'&page=1');
+    var d=await r.json();
+    var totalPages=d.pages||1;
+    var added=0;
+    // Process page 1
+    var subs=d.data||[];
+    for(var i=0;i<subs.length;i++){
+      var s=subs[i];
+      if(people.find(function(x){return x.csId===s.id}))continue;
+      people.push({id:Date.now()+'_'+Math.floor(Math.random()*1000000),first:s.first||'',last:s.last||'',role:(s.lists&&s.lists[0])?s.lists[0].name:'Student',email:s.email||'',requests:'',notes:'',lastPrayed:null,csId:s.id});
+      added++;
+    }
+    // Fetch remaining pages
+    for(var page=2;page<=totalPages;page++){
+      btn.textContent='Importing... ('+page+' of '+totalPages+' pages)';
+      var r2=await fetch(S+'/cs/subscribers?list_id='+list.id+'&page='+page);
+      var d2=await r2.json();
+      var subs2=d2.data||[];
+      for(var j=0;j<subs2.length;j++){
+        var s2=subs2[j];
+        if(people.find(function(x){return x.csId===s2.id}))continue;
+        people.push({id:Date.now()+'_'+Math.floor(Math.random()*1000000),first:s2.first||'',last:s2.last||'',role:(s2.lists&&s2.lists[0])?s2.lists[0].name:'Student',email:s2.email||'',requests:'',notes:'',lastPrayed:null,csId:s2.id});
         added++;
-        await new Promise(function(r){setTimeout(r,1)});
       }
-      if(subs.length<100)break;page++;
+      // Small delay to avoid hammering the API
+      await new Promise(function(res){setTimeout(res,200)});
     }
     save();updStats();renderPpl();renderToday();renderSched();
-    toast.className='toast toast-ok';toast.textContent='Imported '+added+' new people from "'+list.name+'"!';toast.style.display='block';
-    setTimeout(function(){toast.style.display='none'},4000);
+    toast.className='toast toast-ok';toast.textContent='Imported '+added+' new people from "'+list.name+'" ('+people.length+' total)!';toast.style.display='block';
+    setTimeout(function(){toast.style.display='none'},5000);
   }catch(e){
     toast.style.background='#fdecea';toast.style.color='#8a1a1a';toast.textContent='Import failed: '+e.message;toast.style.display='block';
   }
