@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TBT Prayer List</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f9f8f6;color:#1a1a18;min-height:100vh}
+.topbar{background:#fff;border-bottom:1px solid #e8e4dc;padding:0 24px;display:flex;align-items:center;gap:16px;height:56px;position:sticky;top:0;z-index:100}
+.logo{font-size:16px;font-weight:600;letter-spacing:-0.3px}.logo span{color:#9a948a;font-weight:400}
+.topbar-date{font-size:13px;color:#9a948a;margin-left:auto}
+.sync-btn{font-size:12px;padding:6px 14px;border:1px solid #d0c9bc;border-radius:99px;background:transparent;cursor:pointer;color:#5a5750}
+.sync-btn:hover{background:#f9f8f6}.sync-btn.syncing{color:#185fa5;border-color:#185fa5}.sync-btn.done{color:#1a6b3a;border-color:#1a6b3a}
+.layout{display:grid;grid-template-columns:220px 1fr;min-height:calc(100vh - 56px)}
+.sidebar{background:#fff;border-right:1px solid #e8e4dc;padding:20px 12px}
+.nav-section{font-size:11px;color:#9a948a;padding:16px 12px 6px;letter-spacing:0.06em;text-transform:uppercase}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;cursor:pointer;font-size:14px;color:#5a5750;margin-bottom:2px;border:none;background:none;width:100%;text-align:left}
+.nav-item:hover{background:#f9f8f6;color:#1a1a18}.nav-item.active{background:#1a1a18;color:#fff}
+.nav-icon{font-size:16px;width:20px;text-align:center}
+.main{padding:28px 32px;max-width:820px}
+.page{display:none}.page.active{display:block}
+h2{font-size:20px;font-weight:600;margin-bottom:4px;letter-spacing:-0.3px}
+.subtitle{font-size:14px;color:#9a948a;margin-bottom:24px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}
+.stat{background:#fff;border:1px solid #e8e4dc;border-radius:10px;padding:14px 16px}
+.stat-label{font-size:11px;color:#9a948a;text-transform:uppercase;letter-spacing:0.05em}
+.stat-val{font-size:26px;font-weight:600;margin-top:4px;letter-spacing:-0.5px}
+.card{background:#fff;border:1px solid #e8e4dc;border-radius:14px;padding:20px;margin-bottom:14px}
+.card.featured{border:2px solid #1a1a18}
+.ph{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.av{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:15px;flex-shrink:0}
+.av-0{background:#e8f0fa;color:#185fa5}.av-1{background:#e6f4ec;color:#1a6b3a}.av-2{background:#fdf3e0;color:#8a5a00}.av-3{background:#fdecea;color:#8a1a1a}
+.pname{font-size:16px;font-weight:600}.pmeta{font-size:13px;color:#9a948a;margin-top:3px}
+.badge{font-size:11px;padding:3px 10px;border-radius:99px;font-weight:500;white-space:nowrap}
+.b-recent{background:#e6f4ec;color:#1a6b3a}.b-due{background:#fdf3e0;color:#8a5a00}.b-never{background:#fdecea;color:#8a1a1a}.b-cs{background:#e8f0fa;color:#185fa5;font-size:10px}
+.req{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid #e8e4dc;font-size:14px;color:#5a5750;line-height:1.5}
+.req:last-child{border-bottom:none}.req-dot{width:5px;height:5px;border-radius:50%;background:#d0c9bc;margin-top:7px;flex-shrink:0}
+.note{font-size:13px;color:#9a948a;margin-top:8px;font-style:italic;line-height:1.5}
+.ai-box{margin-top:14px;padding:16px;background:#e8f0fa;border-radius:10px;border-left:3px solid #185fa5;display:none}
+.ai-label{font-size:11px;color:#185fa5;margin-bottom:8px;text-transform:uppercase;letter-spacing:0.05em;font-weight:600}
+.ai-text{font-size:14px;color:#1a1a18;line-height:1.85}
+.actions{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.btn{font-size:13px;padding:8px 16px;border:1px solid #d0c9bc;border-radius:10px;background:transparent;cursor:pointer;color:#1a1a18;font-weight:500}
+.btn:hover{background:#f9f8f6}.btn-dark{background:#1a1a18;color:#fff;border-color:#1a1a18}.btn-dark:hover{opacity:0.85}
+.btn-sm{font-size:12px;padding:6px 12px}.btn-danger{color:#8a1a1a;border-color:#f0c0c0}
+.dots span{width:6px;height:6px;border-radius:50%;background:#185fa5;display:inline-block;margin:0 2px;animation:blink 1.2s infinite}
+.dots span:nth-child(2){animation-delay:.2s}.dots span:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,80%,100%{opacity:.2}40%{opacity:1}}
+.day-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.day-badge{background:#1a1a18;color:#fff;padding:6px 18px;border-radius:99px;font-size:14px;font-weight:600}
+.day-verse{font-size:13px;color:#9a948a;font-style:italic;flex:1}
+.rotate-bar{display:flex;align-items:center;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.pills{display:flex;gap:6px;flex-wrap:wrap}
+.pill{font-size:12px;padding:4px 12px;border:1px solid #d0c9bc;border-radius:99px;background:transparent;cursor:pointer;color:#5a5750}
+.pill.active{background:#1a1a18;color:#fff;border-color:#1a1a18}
+.prog{font-size:12px;color:#9a948a;margin-left:auto;white-space:nowrap}
+label{font-size:13px;color:#5a5750;display:block;margin-bottom:5px;font-weight:500}
+input,textarea,select{width:100%;font-size:14px;padding:9px 12px;border:1px solid #d0c9bc;border-radius:10px;background:#fff;color:#1a1a18;font-family:inherit;outline:none}
+input:focus,textarea:focus,select:focus{border-color:#1a1a18}
+textarea{min-height:80px;resize:vertical}
+.form-grid{display:grid;gap:16px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.prow{display:flex;align-items:center;gap:12px;padding:11px 14px;background:#fff;border:1px solid #e8e4dc;border-radius:10px;margin-bottom:7px}
+.prow-info{flex:1;min-width:0}
+.prow-name{font-size:14px;font-weight:500}
+.prow-meta{font-size:12px;color:#9a948a;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.av-sm{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0}
+.list-item{display:flex;align-items:center;gap:12px;padding:12px 16px;background:#fff;border:1px solid #e8e4dc;border-radius:10px;margin-bottom:8px;cursor:pointer}
+.list-item:hover{background:#f9f8f6}.list-item.selected{border-color:#1a1a18;background:#f0ede8}
+.list-name{font-size:14px;font-weight:500;flex:1}.list-count{font-size:12px;color:#9a948a;background:#f9f8f6;padding:3px 10px;border-radius:99px;border:1px solid #e8e4dc}
+.toast{padding:10px 16px;border-radius:10px;font-size:13px;margin-bottom:16px;display:none;font-weight:500}
+.toast-success{background:#e6f4ec;color:#1a6b3a}
+.empty{text-align:center;padding:40px 20px;color:#9a948a;font-size:14px;line-height:1.8}
+.search-row{margin-bottom:16px}
+.share-preview{background:#f9f8f6;border:1px solid #e8e4dc;border-radius:10px;padding:16px;font-size:13px;color:#5a5750;line-height:1.8;max-height:240px;overflow-y:auto;white-space:pre-wrap;font-family:monospace;margin:12px 0}
+.etags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.etag{font-size:12px;padding:4px 12px;background:#f9f8f6;border:1px solid #e8e4dc;border-radius:99px;color:#5a5750;display:inline-flex;align-items:center;gap:6px}
+.etag button{background:none;border:none;cursor:pointer;color:#9a948a;font-size:14px;line-height:1}
+.add-email-row{display:flex;gap:8px}.add-email-row input{flex:1}
+@media(max-width:700px){.layout{grid-template-columns:1fr}.sidebar{display:flex;overflow-x:auto;padding:8px;border-right:none;border-bottom:1px solid #e8e4dc}.nav-section{display:none}.nav-item{white-space:nowrap;flex-shrink:0}.main{padding:16px}.stats{grid-template-columns:repeat(2,1fr)}.form-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="logo">TBT Prayer <span>· The Bible Talks</span></div>
+  <div class="topbar-date" id="topbar-date"></div>
+  <button class="sync-btn" id="sync-btn" onclick="syncLists()">Sync Clearstream</button>
+</div>
+<div class="layout">
+  <div class="sidebar">
+    <div class="nav-section">Prayer</div>
+    <button class="nav-item active" onclick="gotoPage('today')" data-page="today"><span class="nav-icon">🙏</span> Today</button>
+    <button class="nav-item" onclick="gotoPage('schedule')" data-page="schedule"><span class="nav-icon">📅</span> This week</button>
+    <div class="nav-section">People</div>
+    <button class="nav-item" onclick="gotoPage('people')" data-page="people"><span class="nav-icon">👥</span> All people</button>
+    <button class="nav-item" onclick="gotoPage('add')" data-page="add"><span class="nav-icon">➕</span> Add person</button>
+    <div class="nav-section">Team</div>
+    <button class="nav-item" onclick="gotoPage('import')" data-page="import"><span class="nav-icon">⛪</span> Import from Clearstream</button>
+    <button class="nav-item" onclick="gotoPage('share')" data-page="share"><span class="nav-icon">✉️</span> Email team</button>
+  </div>
+  <div class="main">
+    <div class="page active" id="page-today">
+      <div id="today-header"></div>
+      <div class="stats" id="today-stats"></div>
+      <div class="rotate-bar">
+        <div class="pills">
+          <button class="pill active" onclick="setFilter('all',this)">Everyone</button>
+          <button class="pill" onclick="setFilter('due',this)">Needs prayer</button>
+          <button class="pill" onclick="setFilter('never',this)">Never prayed</button>
+        </div>
+        <span class="prog" id="prog"></span>
+        <button class="btn btn-sm" onclick="nextPerson()" style="margin-left:8px">Next →</button>
+      </div>
+      <div id="today-content"></div>
+    </div>
+    <div class="page" id="page-schedule">
+      <h2>This week</h2><p class="subtitle">Mon–Thu rotation — everyone prayed for at least once a month.</p>
+      <div id="schedule-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px"></div>
+      <div class="card"><div style="font-size:15px;font-weight:600;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid #e8e4dc">Monthly rotation</div><div id="rotation-info" style="font-size:14px;color:#5a5750;line-height:1.8"></div></div>
+    </div>
+    <div class="page" id="page-people">
+      <h2>All people</h2><p class="subtitle">Your full TBT prayer list, sorted by who needs prayer most.</p>
+      <div class="search-row"><input type="search" placeholder="Search..." oninput="renderPeople(this.value)"/></div>
+      <div id="people-list"></div>
+    </div>
+    <div class="page" id="page-add">
+      <h2>Add person</h2><p class="subtitle">Add someone manually to your prayer list.</p>
+      <div id="add-toast" class="toast toast-success">Added!</div>
+      <div class="card">
+        <div class="form-grid">
+          <div class="form-row"><div><label>First name *</label><input id="f-first" type="text" placeholder="Jordan"/></div><div><label>Last name *</label><input id="f-last" type="text" placeholder="Smith"/></div></div>
+          <div class="form-row"><div><label>Role</label><select id="f-role"><option>Student</option><option>Leader</option><option>Apprentice</option><option>Contact</option><option>Volunteer</option></select></div><div><label>Email</label><input id="f-email" type="email" placeholder="jordan@ysu.edu"/></div></div>
+          <div><label>Prayer requests</label><textarea id="f-requests" placeholder="What do you want to pray for them?"></textarea></div>
+          <div><label>Notes / life update</label><textarea id="f-notes" placeholder="Faith stage, family, recent conversations..."></textarea></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn btn-dark" onclick="addPerson()">Add to prayer list</button><button class="btn" onclick="suggestNew()">Suggest with AI</button></div>
+          <div id="ai-new" class="ai-box"><div class="ai-label">Suggested requests</div><div class="ai-text" id="ai-new-txt"></div><button class="btn btn-sm" style="margin-top:12px" onclick="useNew()">Use these</button></div>
+        </div>
+      </div>
+    </div>
+    <div class="page" id="page-import">
+      <h2>Import from Clearstream</h2><p class="subtitle">Pull your TBT subscribers directly into the prayer list.</p>
+      <div id="import-toast" class="toast toast-success"></div>
+      <div class="card">
+        <div style="font-size:15px;font-weight:600;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid #e8e4dc">Select a list</div>
+        <div id="cs-lists"><div class="empty" style="padding:1rem 0">Click "Sync Clearstream" in the top bar to load your lists.</div></div>
+        <button class="btn btn-dark" onclick="importList()" style="margin-top:8px">Import selected list</button>
+      </div>
+      <div class="card" style="font-size:14px;color:#5a5750;line-height:1.8">Connected to <strong>The Bible Talks</strong> (Old North Church) · Live data via tbt-prayer-server.onrender.com</div>
+    </div>
+    <div class="page" id="page-share">
+      <h2>Email team</h2><p class="subtitle">Send today's prayer list to Olivia, Ashley, Jake, Caleb and volunteers.</p>
+      <div class="card">
+        <div style="font-size:15px;font-weight:600;margin-bottom:12px">Team email addresses</div>
+        <div class="etags" id="etags"></div>
+        <div class="add-email-row"><input type="email" id="new-email" placeholder="Add team member email..."/><button class="btn btn-sm" onclick="addEmail()">Add</button></div>
+      </div>
+      <div class="card">
+        <div style="font-size:15px;font-weight:600;margin-bottom:6px">Prayer email preview</div>
+        <div style="font-size:13px;color:#9a948a;margin-bottom:12px">Today's rotation, ready to send to your team.</div>
+        <button class="btn btn-sm" onclick="previewEmail()">Refresh preview</button>
+        <div class="share-preview" id="email-preview">Click "Refresh preview" to generate.</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
+          <button class="btn btn-dark" onclick="copyEmail()">Copy to clipboard</button>
+          <button class="btn" onclick="openMailto()">Open in mail app</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+const SERVER='https://tbt-prayer-server.onrender.com';
+const DAYS=['Monday','Tuesday','Wednesday','Thursday'];
+const VERSES=['Devote yourselves to prayer, being watchful and thankful. — Col 4:2','The prayer of a righteous person is powerful and effective. — James 5:16','Do not be anxious about anything, but in every situation, by prayer... — Phil 4:6','Pray without ceasing. — 1 Thess 5:17'];
+let people=JSON.parse(localStorage.getItem('tbt-people-v5')||'[]');
+let teamEmails=JSON.parse(localStorage.getItem('tbt-emails-v4')||'[]');
+let cslists=[];let selectedListId=null;let curIdx=0;let curFilter='all';let aiNewText='';
+const init=p=>(p.first[0]+p.last[0]).toUpperCase();
+const avc=p=>['0','1','2','3'][(p.first.charCodeAt(0)+p.last.charCodeAt(0))%4];
+const dSince=d=>d?Math.floor((Date.now()-new Date(d).getTime())/86400000):null;
+const pStat=p=>{const d=dSince(p.lastPrayed);return d===null?'never':d<=7?'recent':'due'};
+const pLabel=p=>{const d=dSince(p.lastPrayed);return d===null?'Never prayed':d===0?'Today':d===1?'Yesterday':d<=7?d+'d ago':d+' days ago'};
+const bc=s=>s==='recent'?'b-recent':s==='due'?'b-due':'b-never';
+function getTodayName(){return{1:'Monday',2:'Tuesday',3:'Wednesday',4:'Thursday'}[new Date().getDay()]||null}
+function getSchedule(){
+  if(!people.length)return{Monday:[],Tuesday:[],Wednesday:[],Thursday:[]};
+  const wk=Math.ceil(((new Date()-new Date(new Date().getFullYear(),0,1))/86400000+new Date(new Date().getFullYear(),0,1).getDay()+1)/7);
+  const sorted=[...people].sort((a,b)=>(a.lastPrayed?new Date(a.lastPrayed).getTime():0)-(b.lastPrayed?new Date(b.lastPrayed).getTime():0));
+  const ppd=Math.max(1,Math.ceil(people.length/16));
+  const off=(wk*52)%Math.max(people.length,1);
+  const rot=[...sorted.slice(off),...sorted.slice(0,off)];
+  const s={Monday:[],Tuesday:[],Wednesday:[],Thursday:[]};
+  DAYS.forEach((d,i)=>{s[d]=rot.slice(i*ppd,(i+1)*ppd).filter(Boolean)});return s;
+}
+function getTodayPeople(){const t=getTodayName();return t?getSchedule()[t]||[]:[]}
+function filtered(){if(curFilter==='due')return people.filter(p=>pStat(p)==='due');if(curFilter==='never')return people.filter(p=>pStat(p)==='never');return people}
+function updateStats(){
+  document.getElementById('today-stats').innerHTML=['Praying today|'+getTodayPeople().length,'Prayed today|'+people.filter(p=>dSince(p.lastPrayed)===0).length,'Total people|'+people.length,'From Clearstream|'+people.filter(p=>p.csId).length].map(s=>{const[l,v]=s.split('|');return'<div class="stat"><div class="stat-label">'+l+'</div><div class="stat-val">'+v+'</div></div>'}).join('');
+}
+function renderToday(){
+  const today=getTodayName();
+  document.getElementById('topbar-date').textContent=new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+  const hdr=document.getElementById('today-header');
+  if(!today){hdr.innerHTML='<h2>Rest day</h2><p class="subtitle">No prayer scheduled. Rest, worship, enjoy your family.</p>';document.getElementById('today-content').innerHTML='';document.getElementById('prog').textContent='';updateStats();return}
+  const vi=DAYS.indexOf(today);
+  hdr.innerHTML='<div class="day-header"><span class="day-badge">'+today+'</span><span class="day-verse">"'+VERSES[vi>=0?vi:0]+'"</span></div>';
+  updateStats();
+  const fp=filtered();
+  document.getElementById('prog').textContent=fp.length?(curIdx+1)+' of '+fp.length:'';
+  const el=document.getElementById('today-content');
+  if(!fp.length){el.innerHTML='<div class="empty">'+(people.length?'No one matches this filter.':'Go to "Import from Clearstream" to load your people.')+'</div>';return}
+  if(curIdx>=fp.length)curIdx=0;
+  const p=fp[curIdx];const s=pStat(p);const ac=avc(p);
+  const reqs=p.requests?p.requests.split('\n').filter(r=>r.trim()).map(r=>'<div class="req"><div class="req-dot"></div><div>'+r+'</div></div>').join(''):'<div style="font-size:13px;color:#9a948a;padding:8px 0">No requests yet — click Suggest requests below.</div>';
+  el.innerHTML='<div class="card featured"><div class="ph"><div class="av av-'+ac+'">'+init(p)+'</div><div style="flex:1"><div class="pname">'+p.first+' '+p.last+(p.csId?' <span class="badge b-cs">Clearstream</span>':'')+'</div><div class="pmeta">'+p.role+(p.email?' · '+p.email:'')+'</div></div><span class="badge '+bc(s)+'">'+pLabel(p)+'</span></div><div>'+reqs+'</div>'+(p.notes?'<div class="note">'+p.notes+'</div>':'')+'<div id="ai-card" class="ai-box"><div class="ai-label" id="ai-card-lbl">Generated prayer</div><div class="ai-text" id="ai-card-txt"></div><button class="btn btn-sm" id="ai-card-use" style="display:none;margin-top:12px" onclick="saveCardReqs()">Save as requests</button></div><div class="actions"><button class="btn btn-dark btn-sm" onclick="markPrayed(''+p.id+'')">Mark as prayed</button><button class="btn btn-sm" onclick="genPrayer(''+p.id+'')">Generate prayer</button><button class="btn btn-sm" onclick="suggestReqs(''+p.id+'')">Suggest requests</button><button class="btn btn-sm" onclick="editP(''+p.id+'')">Edit</button></div></div>';
+}
+function renderSchedule(){
+  const sch=getSchedule();const today=getTodayName();
+  document.getElementById('schedule-grid').innerHTML=DAYS.map(d=>'<div style="background:#fff;border:1px solid #e8e4dc;border-radius:10px;overflow:hidden"><div style="padding:10px 12px;background:'+(d===today?'#1a1a18':'#f9f8f6')+';border-bottom:1px solid #e8e4dc;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:'+(d===today?'#fff':'#9a948a')+'">'+d+'</div>'+(sch[d].length?sch[d].map(p=>'<div style="padding:8px 12px;border-bottom:1px solid #e8e4dc;font-size:13px"><div style="font-weight:500">'+p.first+' '+p.last+'</div><div style="font-size:11px;color:#9a948a">'+p.role+'</div></div>').join(''):'<div style="padding:8px 12px;font-size:13px;color:#9a948a">No one assigned</div>')+'</div>').join('');
+  document.getElementById('rotation-info').innerHTML='With <strong>'+people.length+' people</strong> praying Mon–Thu, each person is prayed for approximately every <strong>'+Math.max(1,Math.ceil(people.length/4))+' days</strong> — at least once a month. Prioritises those not prayed for recently.';
+}
+function renderPeople(q=''){
+  const el=document.getElementById('people-list');
+  if(!people.length){el.innerHTML='<div class="empty">No people yet. Import from Clearstream or add manually.</div>';return}
+  const sorted=[...people].filter(p=>!q||(p.first+' '+p.last).toLowerCase().includes(q.toLowerCase())).sort((a,b)=>{const o={never:0,due:1,recent:2};return o[pStat(a)]-o[pStat(b)]});
+  el.innerHTML=sorted.map(p=>'<div class="prow"><div class="av-sm av-'+avc(p)+'">'+init(p)+'</div><div class="prow-info"><div class="prow-name">'+p.first+' '+p.last+'</div><div class="prow-meta">'+p.role+(p.requests?' · '+p.requests.split('\n')[0].substring(0,50):'')+'</div></div><span class="badge '+bc(pStat(p))+'" style="margin-right:8px">'+pLabel(p)+'</span><button class="btn btn-sm btn-danger" onclick="removeP(''+p.id+'')">×</button></div>').join('');
+}
+function renderCSLists(){
+  const el=document.getElementById('cs-lists');
+  if(!cslists.length){el.innerHTML='<div class="empty" style="padding:1rem 0">Click "Sync Clearstream" to load your lists.</div>';return}
+  el.innerHTML=cslists.map(l=>'<div class="list-item'+(l.id===selectedListId?' selected':'')+'" onclick="selList('+l.id+')"><div class="list-name">'+l.name+'</div><div class="list-count">'+l.subscriber_count+' people</div></div>').join('');
+}
+function selList(id){selectedListId=id;renderCSLists()}
+async function syncLists(){
+  const btn=document.getElementById('sync-btn');btn.className='sync-btn syncing';btn.textContent='Syncing...';
+  try{const r=await fetch(SERVER+'/cs/lists');const d=await r.json();cslists=d.data||[];if(!selectedListId&&cslists.length)selectedListId=cslists[0].id;renderCSLists();btn.className='sync-btn done';btn.textContent='Synced ✓';setTimeout(()=>{btn.className='sync-btn';btn.textContent='Sync Clearstream'},3000)}
+  catch(e){btn.className='sync-btn';btn.textContent='Retry sync'}
+}
+async function importList(){
+  const list=cslists.find(l=>l.id===selectedListId);if(!list)return;
+  const toast=document.getElementById('import-toast');toast.style.display='none';
+  try{
+    let page=1,added=0;
+    while(true){
+      const r=await fetch(SERVER+'/cs/subscribers?list_id='+list.id+'&page='+page+'&per_page=100');
+      const d=await r.json();const subs=d.data||[];if(!subs.length)break;
+      for(const s of subs){if(people.find(x=>x.csId===s.id))continue;people.push({id:Date.now().toString()+Math.random(),first:s.first||'',last:s.last||'',role:s.lists?.[0]?.name||'Student',email:s.email||'',requests:'',notes:'',lastPrayed:null,csId:s.id});added++;await new Promise(r=>setTimeout(r,2))}
+      if(subs.length<100)break;page++;
+    }
+    save();updateStats();renderPeople();renderToday();
+    toast.className='toast toast-success';toast.textContent='Imported '+added+' new people from "'+list.name+'"!';toast.style.display='block';setTimeout(()=>toast.style.display='none',4000);
+  }catch(e){toast.className='toast';toast.style.background='#fdecea';toast.style.color='#8a1a1a';toast.textContent='Import failed: '+e.message;toast.style.display='block'}
+}
+function nextPerson(){const fp=filtered();if(!fp.length)return;curIdx=(curIdx+1)%fp.length;renderToday()}
+function setFilter(f,btn){curFilter=f;curIdx=0;document.querySelectorAll('.pill').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderToday()}
+function markPrayed(id){const p=people.find(x=>x.id===id);if(!p)return;p.lastPrayed=new Date().toISOString();save();updateStats();renderToday();renderPeople()}
+function removeP(id){if(!confirm('Remove this person?'))return;people=people.filter(x=>x.id!==id);save();updateStats();renderPeople();renderToday()}
+let _cid=null;let _creqs='';
+async function genPrayer(id){
+  _cid=id;const p=people.find(x=>x.id===id);if(!p)return;
+  const box=document.getElementById('ai-card');const txt=document.getElementById('ai-card-txt');
+  document.getElementById('ai-card-lbl').textContent='Generated prayer';document.getElementById('ai-card-use').style.display='none';
+  box.style.display='block';txt.innerHTML='<div class="dots"><span></span><span></span><span></span></div>';
+  const res=await callClaude('Write a sincere, pastoral, biblically-grounded prayer for '+p.first+' '+p.last+' ('+p.role+' in a campus ministry at Youngstown State University). Pastor praying is Bruce Chimani, Reformed Baptist. Warm, personal, specific. 2-3 short paragraphs. Start with "Father," or "Lord,". No preamble.\n\nRequests: '+(p.requests||'none')+'\nNotes: '+(p.notes||'none'));
+  txt.innerHTML=res.replace(/\n\n/g,'<br><br>');
+}
+async function suggestReqs(id){
+  _cid=id;const p=people.find(x=>x.id===id);if(!p)return;
+  const box=document.getElementById('ai-card');const txt=document.getElementById('ai-card-txt');
+  document.getElementById('ai-card-lbl').textContent='Suggested prayer requests';
+  box.style.display='block';txt.innerHTML='<div class="dots"><span></span><span></span><span></span></div>';
+  const res=await callClaude('Suggest 3-4 specific prayer requests for '+p.first+' '+p.last+', a '+p.role+' in a campus ministry at YSU. Notes: "'+(p.notes||'none')+'". Concise, biblically-grounded. One per line, no numbers or bullets.');
+  txt.innerHTML=res.replace(/\n/g,'<br>');_creqs=res;document.getElementById('ai-card-use').style.display='block';
+}
+function saveCardReqs(){const p=people.find(x=>x.id===_cid);if(!p)return;p.requests=_creqs.replace(/<br>/g,'\n').trim();save();renderToday();document.getElementById('ai-card').style.display='none'}
+async function suggestNew(){
+  const box=document.getElementById('ai-new');const txt=document.getElementById('ai-new-txt');
+  box.style.display='block';txt.innerHTML='<div class="dots"><span></span><span></span><span></span></div>';
+  const first=document.getElementById('f-first').value.trim()||'this person';const role=document.getElementById('f-role').value;const notes=document.getElementById('f-notes').value.trim();
+  aiNewText=await callClaude('Suggest 3-4 prayer requests for '+first+', a '+role+' in a college ministry at YSU. Notes: "'+(notes||'none')+'". Concise, biblically-grounded. One per line, no numbers or bullets.');
+  txt.innerHTML=aiNewText.replace(/\n/g,'<br>');
+}
+function useNew(){document.getElementById('f-requests').value=aiNewText.trim();document.getElementById('ai-new').style.display='none'}
+function addPerson(){
+  const first=document.getElementById('f-first').value.trim();const last=document.getElementById('f-last').value.trim();
+  if(!first||!last){alert('Please enter a name.');return}
+  people.push({id:Date.now().toString(),first,last,role:document.getElementById('f-role').value,email:document.getElementById('f-email').value.trim(),requests:document.getElementById('f-requests').value.trim(),notes:document.getElementById('f-notes').value.trim(),lastPrayed:null,csId:null});
+  save();updateStats();renderPeople();renderToday();
+  ['f-first','f-last','f-email','f-requests','f-notes'].forEach(id=>document.getElementById(id).value='');document.getElementById('ai-new').style.display='none';
+  const t=document.getElementById('add-toast');t.style.display='block';setTimeout(()=>t.style.display='none',2500);
+}
+function editP(id){const p=people.find(x=>x.id===id);if(!p)return;document.getElementById('f-first').value=p.first;document.getElementById('f-last').value=p.last;document.getElementById('f-role').value=p.role;document.getElementById('f-email').value=p.email||'';document.getElementById('f-requests').value=p.requests||'';document.getElementById('f-notes').value=p.notes||'';people=people.filter(x=>x.id!==id);save();updateStats();gotoPage('add')}
+async function callClaude(prompt){
+  const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:prompt}]})});
+  const d=await r.json();return d.content?.find(c=>c.type==='text')?.text||'Could not generate.';
+}
+function renderEtags(){document.getElementById('etags').innerHTML=teamEmails.map(e=>'<span class="etag">'+e+'<button onclick="removeEmail(''+e+'')">×</button></span>').join('')}
+function addEmail(){const v=document.getElementById('new-email').value.trim();if(!v||!v.includes('@'))return;if(!teamEmails.includes(v))teamEmails.push(v);document.getElementById('new-email').value='';renderEtags();localStorage.setItem('tbt-emails-v4',JSON.stringify(teamEmails))}
+function removeEmail(e){teamEmails=teamEmails.filter(x=>x!==e);renderEtags();localStorage.setItem('tbt-emails-v4',JSON.stringify(teamEmails))}
+function buildEmail(){
+  const dateStr=new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});const ps=getTodayPeople();
+  if(!ps.length)return'TBT Prayer List — '+dateStr+'\n\nHey team,\n\nNo prayer scheduled today.\n\n— Bruce';
+  let b='TBT Prayer List — '+dateStr+'\n\nHey team,\n\nHere are the people to pray for today:\n\n';
+  ps.forEach((p,i)=>{b+=(i+1)+'. '+p.first+' '+p.last+' ('+p.role+')\n';if(p.requests)p.requests.split('\n').filter(r=>r.trim()).forEach(r=>b+='   • '+r+'\n');if(p.notes)b+='   Note: '+p.notes+'\n';b+='\n'});
+  return b+'"Devote yourselves to prayer, being watchful and thankful." — Col 4:2\n\n— Bruce';
+}
+function previewEmail(){document.getElementById('email-preview').textContent=buildEmail()}
+function copyEmail(){navigator.clipboard.writeText(buildEmail()).then(()=>{const b=event.target;b.textContent='Copied!';setTimeout(()=>b.textContent='Copy to clipboard',2000)})}
+function openMailto(){window.location='mailto:'+teamEmails.join(',')+encodeURIComponent('?subject=TBT Prayer List&body='+buildEmail())}
+function save(){localStorage.setItem('tbt-people-v5',JSON.stringify(people))}
+function gotoPage(page){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  document.querySelector('[data-page="'+page+'"]').classList.add('active');
+  if(page==='today'){renderToday()}
+  if(page==='schedule'){renderSchedule()}
+  if(page==='people'){renderPeople()}
+  if(page==='import'){renderCSLists()}
+  if(page==='share'){renderEtags()}
+}
+renderToday();renderSchedule();renderPeople();renderCSLists();renderEtags();
+syncLists();
+</script>
+</body>
+</html>
