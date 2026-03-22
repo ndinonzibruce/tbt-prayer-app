@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0051)file:///Users/ndinonzibruce/Downloads/index_12.html -->
+<!-- saved from url=(0051)file:///Users/ndinonzibruce/Downloads/index_13.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -101,14 +101,137 @@ textarea{min-height:80px;resize:vertical}
 .etag{font-size:12px;padding:4px 12px;background:#f5f3ee;border:1.5px solid #d0c9bc;border-radius:4px;color:#333;display:inline-flex;align-items:center;gap:6px;font-weight:600}
 .etag button{background:none;border:none;cursor:pointer;color:#aaa;font-size:14px;line-height:1}
 .ae{display:flex;gap:8px}.ae input{flex:1}
+
+.progress-wrap{margin-bottom:20px}
+.progress-info{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.progress-label{font-size:11px;font-weight:700;color:#a8844a;text-transform:uppercase;letter-spacing:0.06em}
+.progress-count{font-size:11px;font-weight:700;color:#a8844a}
+.progress-bar-bg{background:#e8e4dc;border-radius:4px;height:6px;width:100%;overflow:hidden}
+.progress-bar-fill{background:#a8844a;height:6px;border-radius:4px;transition:width 0.4s ease}
+.timer-wrap{display:flex;align-items:center;gap:8px;margin-top:10px}
+.timer-toggle{font-size:11px;color:#a8844a;background:none;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;padding:0;text-decoration:underline}
+.timer-display{font-size:13px;font-weight:700;color:#a8844a;display:none;min-width:48px}
+
+.nav-arrow{background:none;border:1.5px solid #d0c9bc;border-radius:4px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;color:#333;font-family:'Nunito',sans-serif;flex-shrink:0;transition:all 0.15s}
+.nav-arrow:hover:not([disabled]){border-color:#a8844a;color:#a8844a}
+.nav-arrow[disabled]{opacity:0.3;cursor:default}
 .divider{height:1px;background:#eee;margin:16px 0}
+
+
+/* ── MOBILE FIRST ─────────────────────────────────── */
 @media(max-width:700px){
-  .layout{grid-template-columns:1fr}
-  .sidebar{display:flex;flex-wrap:wrap;gap:4px;padding:8px;border-bottom:2px solid #a8844a}
-  .nav-sec{display:none}.nav-item{white-space:nowrap;flex-shrink:0;padding:7px 10px;font-size:12px}
-  .main{padding:16px}.stats{grid-template-columns:repeat(2,1fr)}
-  .fr{grid-template-columns:1fr}.steps{grid-template-columns:1fr}
-  .sched-grid{grid-template-columns:repeat(4,1fr)}
+  /* Layout: stack vertically, bottom nav */
+  .layout{grid-template-columns:1fr;min-height:auto;padding-bottom:72px}
+
+  /* Sidebar becomes bottom tab bar */
+  .sidebar{
+    position:fixed;bottom:0;left:0;right:0;
+    display:flex;flex-direction:row;align-items:center;
+    background:#000;border-top:2px solid #a8844a;
+    padding:0;z-index:200;height:64px;
+    border-right:none;overflow-x:auto;
+  }
+  .nav-sec{display:none}
+  .nav-item{
+    flex:1;min-width:64px;padding:10px 4px;
+    font-size:11px;border-radius:0;margin-bottom:0;
+    flex-direction:column;gap:2px;color:#888;
+    justify-content:center;text-align:center;
+    letter-spacing:0;border-bottom:3px solid transparent;
+  }
+  .nav-item.active{background:transparent;color:#a8844a;border-bottom:3px solid #a8844a}
+  .nav-item:hover{background:transparent}
+
+  /* Topbar: hide date, keep logo + sync */
+  .topbar{padding:0 14px;height:54px}
+  .topbar-date{display:none}
+  .logo-text{font-size:12px}
+  .logo-img{height:38px}
+  .sync-btn{font-size:11px;padding:5px 10px}
+
+  /* Main content */
+  .main{padding:14px 14px 20px}
+
+  /* Stats: 2x2 grid */
+  .stats{grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+  .stat{padding:10px 12px}
+  .stat-val{font-size:22px}
+  .stat-lbl{font-size:10px}
+
+  /* Day header */
+  .day-hdr{margin-bottom:14px;gap:8px}
+  .day-badge{font-size:12px;padding:5px 14px}
+  .day-verse{font-size:12px}
+
+  /* Filter pills */
+  .rot-bar{margin-bottom:14px}
+  .pill{font-size:11px;padding:4px 10px}
+
+  /* Prayer card */
+  .card.featured{padding:16px}
+  .ph{gap:10px;margin-bottom:12px}
+  .av{width:42px;height:42px;font-size:14px}
+  .pname{font-size:15px}
+  .pmeta{font-size:12px}
+  .badge{font-size:10px;padding:3px 8px}
+
+  /* Nav arrows — bigger touch targets */
+  .nav-arrow{width:44px;height:44px;font-size:20px}
+
+  /* Requests */
+  .req{font-size:13px;padding:6px 0}
+
+  /* Actions — full width buttons stacked */
+  .actions{flex-direction:column;gap:10px;margin-top:14px}
+  .actions .btn{width:100%;padding:14px;font-size:14px;text-align:center;border-radius:6px}
+
+  /* Prayer guide box */
+  .pr-box{padding:14px}
+  .pr-text{font-size:13px;line-height:1.9}
+
+  /* Timer */
+  .timer-wrap{margin-top:12px}
+
+  /* Progress bar */
+  .progress-wrap{margin-bottom:16px}
+  .progress-info{margin-bottom:8px}
+  .progress-bar-bg{height:8px;border-radius:4px}
+  .progress-bar-fill{height:8px}
+
+  /* Forms */
+  .fr{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .fg{gap:12px}
+  input,textarea,select{font-size:16px} /* prevents iOS zoom */
+
+  /* Schedule */
+  .sched-grid{grid-template-columns:repeat(4,1fr);gap:6px}
+
+  /* People list */
+  .prow{padding:10px 12px}
+  .prow-name{font-size:13px}
+  .prow-meta{font-size:11px}
+  .av-sm{width:30px;height:30px;font-size:11px}
+
+  /* Import lists */
+  .li{padding:12px}
+  .li-name{font-size:13px}
+  .li-ct{font-size:11px}
+
+  /* Headings */
+  h2{font-size:18px}
+  .sub{font-size:13px;margin-bottom:16px}
+}
+
+.nav-ic{font-size:20px;line-height:1;display:block}
+.nav-lbl{display:none}
+@media(max-width:700px){
+  .nav-ic{font-size:18px}
+  .nav-lbl{display:block;font-size:10px;margin-top:2px;font-weight:700;letter-spacing:0.02em}
+}
+@media(min-width:701px){
+  .nav-ic{display:none}
+  .nav-lbl{display:inline}
 }
 </style>
 </head>
@@ -123,14 +246,13 @@ textarea{min-height:80px;resize:vertical}
 <div class="layout">
   <div class="sidebar">
     <div class="nav-sec">Prayer</div>
-    <button class="nav-item active" onclick="go(&#39;today&#39;)" data-p="today">Today</button>
-    <button class="nav-item" onclick="go(&#39;sched&#39;)" data-p="sched">This week</button>
+    <button class="nav-item active" onclick="go(&#39;today&#39;)" data-p="today"><span class="nav-ic">🙏</span><span class="nav-lbl">Today</span></button>
+    <button class="nav-item" onclick="go(&#39;sched&#39;)" data-p="sched"><span class="nav-ic">📅</span><span class="nav-lbl">Week</span></button>
     <div class="nav-sec">People</div>
-    <button class="nav-item" onclick="go(&#39;people&#39;)" data-p="people">All people</button>
-    <button class="nav-item" onclick="go(&#39;add&#39;)" data-p="add">Add person</button>
+    <button class="nav-item" onclick="go(&#39;people&#39;)" data-p="people"><span class="nav-ic">👥</span><span class="nav-lbl">People</span></button>
+    <button class="nav-item" onclick="go(&#39;add&#39;)" data-p="add"><span class="nav-ic">＋</span><span class="nav-lbl">Add</span></button>
     <div class="nav-sec">Team</div>
-    <button class="nav-item" onclick="go(&#39;import&#39;)" data-p="import">Import Clearstream</button>
-    <button class="nav-item" onclick="go(&#39;share&#39;)" data-p="share">Email team</button>
+    <button class="nav-item" onclick="go(&#39;import&#39;)" data-p="import"><span class="nav-ic">⛪</span><span class="nav-lbl">Import</span></button>
   </div>
   <div class="main">
 
@@ -156,10 +278,8 @@ textarea{min-height:80px;resize:vertical}
             <button class="pill" onclick="setF(&#39;due&#39;,this)">Needs prayer</button>
             <button class="pill" onclick="setF(&#39;never&#39;,this)">Never prayed</button>
           </div>
-          <span class="prog" id="pg">1 of 20</span>
-          <button class="btn btn-sm" onclick="nxt()" style="margin-left:8px">Next</button>
         </div>
-        <div id="tc"><div class="card featured"><div class="ph"><div class="av av-3">AB</div><div style="flex:1"><div class="pname">Ava Beil <span class="badge b-cs">CS</span></div><div class="pmeta">All TBT · avalarson610@gmail.com</div></div><span class="badge b-never">Never prayed</span></div><div><div style="font-size:13px;color:#aaa;padding:8px 0;font-weight:500">No specific requests added yet.</div></div><div class="pr-box" id="pr-box"><div class="pr-label" id="pr-label"></div><div class="pr-text" id="pr-text"></div></div><div class="actions"><button class="btn btn-dark js-prayed" data-id="17741417544940.6824287637200372">Mark as prayed</button><button class="btn btn-gold js-prayer" data-id="17741417544940.6824287637200372">Generate prayer guide</button><button class="btn btn-sm js-edit" data-id="17741417544940.6824287637200372">Edit</button></div></div></div>
+        <div id="tc"><div class="progress-wrap"><div class="progress-info"><span class="progress-label">Today's progress</span><span class="progress-count">0 of 20 prayed for</span></div><div class="progress-bar-bg"><div class="progress-bar-fill" style="width:0%"></div></div></div><div class="card featured"><div class="ph"><button class="nav-arrow js-prev" disabled="">←</button><div class="av av-3">AB</div><div style="flex:1"><div class="pname">Ava Beil <span class="badge b-cs">CS</span> </div><div class="pmeta">All TBT · avalarson610@gmail.com </div></div><span class="badge b-never">Never prayed</span><button class="nav-arrow js-next">→</button></div><div><div style="font-size:13px;color:#aaa;padding:8px 0;font-weight:500">No specific requests added yet.</div></div><div class="pr-box" id="pr-box"><div class="pr-label" id="pr-label"></div><div class="pr-text" id="pr-text"></div></div><div class="timer-wrap"><button class="timer-toggle" id="timer-toggle" onclick="toggleTimer()">Show timer</button><span class="timer-display" id="timer-display">0:00</span></div><div class="actions"><button class="btn btn-dark js-prayed" data-id="17741417544940.6824287637200372">Mark as prayed</button><button class="btn btn-gold js-prayer" data-id="17741417544940.6824287637200372">Generate prayer guide</button><button class="btn btn-sm js-edit" data-id="17741417544940.6824287637200372">Edit</button></div></div></div>
       </div>
     </div>
 
@@ -197,30 +317,12 @@ Needs to hear the gospel clearly"></textarea></div>
       <div id="it" class="toast toast-ok"></div>
       <div class="card">
         <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#a8844a;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid #eee">Select a list</div>
-        <div id="cl"><div class="li sel" onclick="selL(377023)"><div class="li-name">All TBT</div><div class="li-ct">231</div></div><div class="li" onclick="selL(377029)"><div class="li-name">Assimilation Pipeline</div><div class="li-ct">6</div></div><div class="li" onclick="selL(377024)"><div class="li-name">Bible Talk and Prayer</div><div class="li-ct">114</div></div><div class="li" onclick="selL(377025)"><div class="li-name">BTP people who have missed 2 weeks</div><div class="li-ct">63</div></div><div class="li" onclick="selL(377026)"><div class="li-name">Never came to TBT in 2026</div><div class="li-ct">5</div></div><div class="li" onclick="selL(377742)"><div class="li-name">New from SMS</div><div class="li-ct">5</div></div><div class="li" onclick="selL(377027)"><div class="li-name">TBT Sunday</div><div class="li-ct">121</div></div><div class="li" onclick="selL(377028)"><div class="li-name">TBT Sunday people who have missed 2 weeks </div><div class="li-ct">38</div></div></div>
+        <div id="cl"><div class="empty" style="padding:1rem 0">Click "Sync Clearstream" to load lists.</div></div>
         <button class="btn btn-gold" id="ib" onclick="importList()" style="margin-top:12px">Import selected list</button>
       </div>
       <div class="card" style="font-size:13px;color:#666;line-height:1.8;font-weight:500">Connected to <strong style="color:#000">The Bible Talks</strong> (Old North Church) via tbt-prayer-server.onrender.com</div>
     </div>
 
-    <div class="page" id="p-share">
-      <h2>Email team</h2><p class="sub">Send today's prayer list to Olivia, Ashley, Jake, Caleb and volunteers.</p>
-      <div class="card">
-        <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#a8844a;margin-bottom:12px">Team emails</div>
-        <div class="etags" id="et"></div>
-        <div class="ae"><input type="email" id="ne" placeholder="Add team member email..."><button class="btn btn-sm btn-dark" onclick="addE()" style="white-space:nowrap">Add</button></div>
-      </div>
-      <div class="card">
-        <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#a8844a;margin-bottom:6px">Email preview</div>
-        <div style="font-size:13px;color:#888;margin-bottom:12px;font-weight:500">Today's people, ready to send to your team.</div>
-        <button class="btn btn-sm" onclick="prvw()">Refresh preview</button>
-        <div class="prev" id="ep">Click refresh to generate.</div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
-          <button class="btn btn-dark" onclick="cpyE()">Copy to clipboard</button>
-          <button class="btn" onclick="mlto()">Open in mail app</button>
-        </div>
-      </div>
-    </div>
 
   </div>
 </div>
@@ -295,6 +397,15 @@ function getDayOfYear(){
 }
 function getTodayGroup(){
   if(!people.length)return[];
+  var todayKey='tbt-today-'+new Date().toISOString().slice(0,10);
+  // Return cached group if already generated today
+  var cached=localStorage.getItem(todayKey);
+  if(cached){
+    var ids=JSON.parse(cached);
+    // Map ids back to current people objects (preserving latest data)
+    return ids.map(function(id){return people.find(function(p){return p.id===id})}).filter(Boolean);
+  }
+  // Generate fresh group for today
   var sorted=people.slice().sort(function(a,b){
     return (a.lastPrayed?new Date(a.lastPrayed).getTime():0)-(b.lastPrayed?new Date(b.lastPrayed).getTime():0);
   });
@@ -302,7 +413,15 @@ function getTodayGroup(){
   var dayNum=getDayOfYear();
   var off=(dayNum*ppd)%Math.max(people.length,1);
   var rot=sorted.slice(off).concat(sorted.slice(0,off));
-  return rot.slice(0,ppd);
+  var group=rot.slice(0,ppd);
+  // Cache the IDs for today
+  localStorage.setItem(todayKey,JSON.stringify(group.map(function(p){return p.id})));
+  // Clean up old cached days
+  for(var i=0;i<localStorage.length;i++){
+    var k=localStorage.key(i);
+    if(k&&k.indexOf('tbt-today-')===0&&k!==todayKey){localStorage.removeItem(k);break;}
+  }
+  return group;
 }
 function getSched(){
   if(!people.length)return {};
@@ -327,20 +446,31 @@ function renderToday(){
   if(!people.length){ob.style.display='block';pu.style.display='none';return}
   ob.style.display='none';pu.style.display='block';
   var fp=fltd();
-  document.getElementById('pg').textContent=fp.length?(idx+1)+' of '+fp.length:'';
   var el=document.getElementById('tc');
   if(!fp.length){el.innerHTML='<div class="empty">No one matches this filter.</div>';return}
   if(idx>=fp.length)idx=0;
   var p=fp[idx],s=ps(p),ac=avc(p);
   var reqs=p.requests?p.requests.split('\n').filter(function(r){return r.trim()}).map(function(r){return'<div class="req"><div class="req-dot"></div><div>'+r+'</div></div>'}).join(''):'<div style="font-size:13px;color:#aaa;padding:8px 0;font-weight:500">No specific requests added yet.</div>';
-  el.innerHTML='<div class="card featured">'
-    +'<div class="ph"><div class="av av-'+ac+'">'+ini(p)+'</div>'
-    +'<div style="flex:1"><div class="pname">'+p.first+' '+p.last+(p.csId?' <span class="badge b-cs">CS</span>':'')+'</div>'
-    +'<div class="pmeta">'+p.role+(p.email?' &middot; '+p.email:'')+'</div></div>'
-    +'<span class="badge '+bc(s)+'">'+pl(p)+'</span></div>'
+  var prayedToday=fp.filter(function(x){return x.lastPrayed&&x.lastPrayed.slice(0,10)===todayStr()}).length;
+  var pct=fp.length>0?Math.round((prayedToday/fp.length)*100):0;
+  el.innerHTML=
+    '<div class="progress-wrap">'
+    +'<div class="progress-info"><span class="progress-label">Today\'s progress</span><span class="progress-count">'+prayedToday+' of '+fp.length+' prayed for</span></div>'
+    +'<div class="progress-bar-bg"><div class="progress-bar-fill" style="width:'+pct+'%"></div></div>'
+    +'</div>'
+    +'<div class="card featured">'
+    +'<div class="ph">'
+    +'<button class="nav-arrow js-prev"'+(idx<=0?' disabled':'')+'>&#8592;</button>'
+    +'<div class="av av-'+ac+'">'+ini(p)+'</div>'
+    +'<div style="flex:1"><div class="pname">'+p.first+' '+p.last+(p.csId?' <span class="badge b-cs">CS</span>':'')+' </div>'
+    +'<div class="pmeta">'+p.role+(p.email?' &middot; '+p.email:'')+' </div></div>'
+    +'<span class="badge '+bc(s)+'">'+pl(p)+'</span>'
+    +'<button class="nav-arrow js-next"'+(idx>=fp.length-1?' disabled':'')+'>&#8594;</button>'
+    +'</div>'
     +'<div>'+reqs+'</div>'
     +(p.notes?'<div class="note">'+p.notes+'</div>':'')
     +'<div class="pr-box" id="pr-box"><div class="pr-label" id="pr-label"></div><div class="pr-text" id="pr-text"></div></div>'
+    +'<div class="timer-wrap"><button class="timer-toggle" id="timer-toggle" onclick="toggleTimer()">Show timer</button><span class="timer-display" id="timer-display">0:00</span></div>'
     +'<div class="actions">'
     +'<button class="btn btn-dark js-prayed" data-id="'+encodeURIComponent(p.id)+'">Mark as prayed</button>'
     +'<button class="btn btn-gold js-prayer" data-id="'+encodeURIComponent(p.id)+'">Generate prayer guide</button>'
@@ -349,6 +479,13 @@ function renderToday(){
   el.querySelector('.js-prayed').addEventListener('click',function(){mkPrayed(decodeURIComponent(this.dataset.id))});
   el.querySelector('.js-prayer').addEventListener('click',function(){showPrayer(decodeURIComponent(this.dataset.id))});
   el.querySelector('.js-edit').addEventListener('click',function(){editP(decodeURIComponent(this.dataset.id))});
+  // Prev/Next nav wiring
+  var prevBtn=el.querySelector('.js-prev');
+  var nextBtn=el.querySelector('.js-next');
+  if(prevBtn)prevBtn.addEventListener('click',function(){if(idx>0){idx--;renderToday();}});
+  if(nextBtn)nextBtn.addEventListener('click',function(){nxt()});
+  // Timer wiring
+  startTimer();
 }
 
 function showPrayer(id){
@@ -445,27 +582,37 @@ function editP(id){
   people=people.filter(function(x){return x.id!==id});save();updStats();go('add');
 }
 
-function renderEtags(){document.getElementById('et').innerHTML=emails.map(function(e){return'<span class="etag">'+e+'<button onclick="rmE(\''+e+'\')">x</button></span>'}).join('')}
-function addE(){var v=document.getElementById('ne').value.trim();if(!v||v.indexOf('@')<0)return;if(emails.indexOf(v)<0)emails.push(v);document.getElementById('ne').value='';renderEtags();localStorage.setItem('tbt-em',JSON.stringify(emails))}
-function rmE(e){emails=emails.filter(function(x){return x!==e});renderEtags();localStorage.setItem('tbt-em',JSON.stringify(emails))}
-
-function buildEmail(){
-  var ds=new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
-  var ps=todayPpl();
-  if(!ps.length)return'TBT Prayer List - '+ds+'\n\nHey team,\n\nNo one assigned yet. Import from Clearstream first.\n\n— Bruce';
-  var b='TBT Prayer List — '+ds+'\n\nHey team,\n\nHere are the people to pray for today:\n\n';
-  ps.forEach(function(p,i){
-    b+=(i+1)+'. '+p.first+' '+p.last+' ('+p.role+')\n';
-    if(p.requests)p.requests.split('\n').filter(function(r){return r.trim()}).forEach(function(r){b+='   - '+r+'\n'});
-    var pr=pickPrayer(p.id,todayStr());
-    b+='   Prayer theme: '+pr.theme+'\n';
-    b+='   '+pr.pts[0]+'\n\n';
-  });
-  return b+'"Devote yourselves to prayer, being watchful and thankful." — Col 4:2\n\n— Bruce';
+var _timerInterval=null;
+var _timerSeconds=0;
+var _timerVisible=false;
+function startTimer(){
+  clearInterval(_timerInterval);
+  _timerSeconds=0;
+  _timerVisible=false;
+  _timerInterval=setInterval(function(){
+    _timerSeconds++;
+    var el=document.getElementById('timer-display');
+    if(el&&_timerVisible){
+      var m=Math.floor(_timerSeconds/60);
+      var s=_timerSeconds%60;
+      el.textContent=m+':'+(s<10?'0':'')+s;
+    }
+  },1000);
 }
-function prvw(){document.getElementById('ep').textContent=buildEmail()}
-function cpyE(){navigator.clipboard.writeText(buildEmail()).then(function(){var b=event.target;b.textContent='Copied!';setTimeout(function(){b.textContent='Copy to clipboard'},2000)})}
-function mlto(){window.open('mailto:'+encodeURIComponent(emails.join(','))+'?subject='+encodeURIComponent('TBT Prayer List — '+new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'}))+'&body='+encodeURIComponent(buildEmail()))}
+function toggleTimer(){
+  _timerVisible=!_timerVisible;
+  var btn=document.getElementById('timer-toggle');
+  var disp=document.getElementById('timer-display');
+  if(btn){btn.textContent=_timerVisible?'Hide timer':'Show timer';}
+  if(disp){
+    disp.style.display=_timerVisible?'inline':'none';
+    if(_timerVisible){
+      var m=Math.floor(_timerSeconds/60);
+      var s=_timerSeconds%60;
+      disp.textContent=m+':'+(s<10?'0':'')+s;
+    }
+  }
+}
 
 function save(){localStorage.setItem('tbt5',JSON.stringify(people))}
 
@@ -478,7 +625,6 @@ function go(page){
   if(page==='sched')renderSched();
   if(page==='people')renderPpl();
   if(page==='import')renderLists();
-  if(page==='share')renderEtags();
 }
 
 renderToday();renderSched();renderPpl();renderLists();renderEtags();
