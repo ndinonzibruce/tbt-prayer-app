@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0051)file:///Users/ndinonzibruce/Downloads/index_14.html -->
+<!-- saved from url=(0051)file:///Users/ndinonzibruce/Downloads/index_17.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -103,8 +103,9 @@ textarea{min-height:80px;resize:vertical}
 .ae{display:flex;gap:8px}.ae input{flex:1}
 
 .progress-wrap{margin-bottom:20px}
-.progress-info{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
 .progress-label{font-size:11px;font-weight:700;color:#a8844a;text-transform:uppercase;letter-spacing:0.06em}
+.progress-count{font-size:11px;font-weight:700;color:#a8844a}
+.progress-info{display:flex;justify-content:flex-end;margin-bottom:5px}
 .progress-count{font-size:11px;font-weight:700;color:#a8844a}
 .progress-bar-bg{background:#e8e4dc;border-radius:4px;height:6px;width:100%;overflow:hidden}
 .progress-bar-fill{background:#a8844a;height:6px;border-radius:4px;transition:width 0.4s ease}
@@ -116,6 +117,27 @@ textarea{min-height:80px;resize:vertical}
 .nav-arrow:hover:not([disabled]){border-color:#a8844a;color:#a8844a}
 .nav-arrow[disabled]{opacity:0.3;cursor:default}
 
+
+.streak-bar{display:flex;align-items:center;gap:12px;background:#000;border-radius:8px;padding:14px 18px;margin-bottom:20px}
+.streak-flame{font-size:28px;line-height:1;flex-shrink:0}
+.streak-info{flex:1}
+.streak-count{font-size:22px;font-weight:700;color:#a8844a;line-height:1}
+.streak-label{font-size:11px;color:#888;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin-top:2px}
+.streak-best{font-size:11px;color:#555;font-weight:600;text-align:right;white-space:nowrap}
+.streak-days{display:flex;gap:4px;margin-top:10px}
+.streak-day{width:28px;height:28px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;flex-direction:column;gap:1px}
+.streak-day.done{background:#a8844a;color:#000}
+.streak-day.today{background:#a8844a;color:#000;box-shadow:0 0 0 2px #fff,0 0 0 4px #a8844a}
+.streak-day.missed{background:#1a1a18;color:#444}
+.streak-day.future{background:#111;color:#333}
+.streak-day-lbl{font-size:8px;font-weight:700}
+.streak-day-dot{width:5px;height:5px;border-radius:50%;background:currentColor;margin-top:1px}
+@media(max-width:700px){
+  .streak-bar{padding:12px 14px;gap:10px}
+  .streak-count{font-size:20px}
+  .streak-day{width:26px;height:26px}
+  .streak-days{gap:3px}
+}
 .weekly-section{margin-top:20px}
 .weekly-hdr{display:flex;align-items:center;gap:10px;margin-bottom:12px}
 .weekly-title{font-size:11px;font-weight:700;color:#a8844a;text-transform:uppercase;letter-spacing:0.1em}
@@ -205,7 +227,9 @@ textarea{min-height:80px;resize:vertical}
   /* Progress bar */
   .progress-wrap{margin-bottom:16px}
   .progress-info{margin-bottom:8px}
-  .progress-bar-bg{height:8px;border-radius:4px}
+  .progress-info{display:flex;justify-content:flex-end;margin-bottom:5px}
+.progress-count{font-size:11px;font-weight:700;color:#a8844a}
+.progress-bar-bg{height:8px;border-radius:4px}
   .progress-bar-fill{height:8px}
 
   /* Forms */
@@ -268,7 +292,16 @@ textarea{min-height:80px;resize:vertical}
 
     <div class="page active" id="p-today">
       <div id="dh"><div class="day-hdr"><span class="day-badge">Sunday</span><span class="day-verse">"Rejoice always, pray without ceasing. — 1 Thess 5:16-17"</span></div></div>
-      <div class="stats" id="st"><div class="stat"><div class="stat-lbl">Praying today</div><div class="stat-val">1</div></div><div class="stat"><div class="stat-lbl">Prayed today</div><div class="stat-val">0</div></div><div class="stat"><div class="stat-lbl">Total people</div><div class="stat-val">20</div></div><div class="stat"><div class="stat-lbl">From Clearstream</div><div class="stat-val">20</div></div></div>
+      <div class="streak-bar" id="streak-bar" style="display: flex;">
+        <span class="streak-flame" id="streak-flame">🕊</span>
+        <div class="streak-info">
+          <div class="streak-count" id="streak-count">0</div>
+          <div class="streak-label" id="streak-label">day streak</div>
+          <div class="streak-days" id="streak-days"><div class="streak-day missed"><span class="streak-day-lbl">M</span><span class="streak-day-dot"></span></div><div class="streak-day missed"><span class="streak-day-lbl">T</span><span class="streak-day-dot"></span></div><div class="streak-day missed"><span class="streak-day-lbl">W</span><span class="streak-day-dot"></span></div><div class="streak-day missed"><span class="streak-day-lbl">T</span><span class="streak-day-dot"></span></div><div class="streak-day missed"><span class="streak-day-lbl">F</span><span class="streak-day-dot"></span></div><div class="streak-day missed"><span class="streak-day-lbl">S</span><span class="streak-day-dot"></span></div><div class="streak-day today"><span class="streak-day-lbl">S</span><span class="streak-day-dot"></span></div></div>
+        </div>
+        <div class="streak-best" id="streak-best">Best: 0 days</div>
+      </div>
+      <div class="stats" id="st"><div class="stat"><div class="stat-lbl">On today's list</div><div class="stat-val">1</div></div><div class="stat"><div class="stat-lbl">Prayed for today</div><div class="stat-val">0</div></div><div class="stat"><div class="stat-lbl">Total people</div><div class="stat-val">20</div></div><div class="stat"><div class="stat-lbl">From Clearstream</div><div class="stat-val">20</div></div></div>
       <div id="ob" style="display:none">
         <div class="onboard">
           <h3>Welcome to TBT Prayer</h3>
@@ -289,7 +322,7 @@ textarea{min-height:80px;resize:vertical}
             <button class="pill" onclick="setF(&#39;never&#39;,this)">Never prayed</button>
           </div>
         </div>
-        <div id="tc"><div class="progress-wrap"><div class="progress-info"><span class="progress-label">Today's progress</span><span class="progress-count">0 of 20 prayed for</span></div><div class="progress-bar-bg"><div class="progress-bar-fill" style="width:0%"></div></div></div><div class="card featured"><div class="ph"><button class="nav-arrow js-prev" disabled="">←</button><div class="av av-3">AB</div><div style="flex:1"><div class="pname">Ava Beil <span class="badge b-cs">CS</span> </div><div class="pmeta">All TBT · avalarson610@gmail.com </div></div><span class="badge b-never">Never prayed</span><button class="nav-arrow js-next">→</button></div><div><div style="font-size:13px;color:#aaa;padding:8px 0;font-weight:500">No specific requests added yet.</div></div><div class="pr-box" id="pr-box"><div class="pr-label" id="pr-label"></div><div class="pr-text" id="pr-text"></div></div><div class="timer-wrap"><button class="timer-toggle" id="timer-toggle" onclick="toggleTimer()">Show timer</button><span class="timer-display" id="timer-display">0:00</span></div><div class="actions"><button class="btn btn-dark js-prayed" data-id="17741417544940.6824287637200372">Mark as prayed</button><button class="btn btn-gold js-prayer" data-id="17741417544940.6824287637200372">Generate prayer guide</button><button class="btn btn-sm js-edit" data-id="17741417544940.6824287637200372">Edit</button></div></div></div>
+        <div id="tc"><div class="progress-wrap"><div class="progress-info"><span class="progress-count">0 of 20 prayed for</span></div><div class="progress-bar-bg"><div class="progress-bar-fill" style="width:0%"></div></div></div><div class="card featured"><div class="ph"><button class="nav-arrow js-prev" disabled="">←</button><div class="av av-3">AB</div><div style="flex:1"><div class="pname">Ava Beil <span class="badge b-cs">CS</span> </div><div class="pmeta">All TBT · avalarson610@gmail.com </div></div><span class="badge b-never">Never prayed</span><button class="nav-arrow js-next">→</button></div><div><div style="font-size:13px;color:#aaa;padding:8px 0;font-weight:500">No specific requests added yet.</div></div><div class="pr-box" id="pr-box"><div class="pr-label" id="pr-label"></div><div class="pr-text" id="pr-text"></div></div><div class="timer-wrap"><button class="timer-toggle" id="timer-toggle" onclick="toggleTimer()">Show timer</button><span class="timer-display" id="timer-display">0:00</span></div><div class="actions"><button class="btn btn-dark js-prayed" data-id="17741417544940.6824287637200372">Mark as prayed</button><button class="btn btn-gold js-prayer" data-id="17741417544940.6824287637200372">Generate prayer guide</button><button class="btn btn-sm js-edit" data-id="17741417544940.6824287637200372">Edit</button></div></div></div>
       </div>
       <div class="weekly-section" id="weekly-section" style="display: block;">
         <div class="weekly-hdr"><span class="weekly-title">Pray for YSU &amp; TBT</span><span class="weekly-week" id="weekly-week-label">Week 13 of 52</span></div>
@@ -671,7 +704,7 @@ function todayPpl(){return getTodayGroup()}
 function fltd(){if(flt==='due')return people.filter(function(p){return ps(p)==='due'});if(flt==='never')return people.filter(function(p){return ps(p)==='never'});return people}
 
 function updStats(){
-  document.getElementById('st').innerHTML=['Praying today|'+todayPpl().length,'Prayed today|'+people.filter(function(p){return ds(p.lastPrayed)===0}).length,'Total people|'+people.length,'From Clearstream|'+people.filter(function(p){return p.csId}).length].map(function(s){var a=s.split('|');return'<div class="stat"><div class="stat-lbl">'+a[0]+'</div><div class="stat-val">'+a[1]+'</div></div>'}).join('');
+  document.getElementById('st').innerHTML=['On today\'s list|'+todayPpl().length,'Prayed for today|'+people.filter(function(p){return ds(p.lastPrayed)===0}).length,'Total people|'+people.length,'From Clearstream|'+people.filter(function(p){return p.csId}).length].map(function(s){var a=s.split('|');return'<div class="stat"><div class="stat-lbl">'+a[0]+'</div><div class="stat-val">'+a[1]+'</div></div>'}).join('');
 }
 
 function renderToday(){
@@ -679,6 +712,7 @@ function renderToday(){
   document.getElementById('td').textContent=new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'}).toUpperCase();
   document.getElementById('dh').innerHTML='<div class="day-hdr"><span class="day-badge">'+tn+'</span><span class="day-verse">"'+VS[ti]+'"</span></div>';
   updStats();
+  renderStreak();
   var ob=document.getElementById('ob'),pu=document.getElementById('pu');
   if(!people.length){ob.style.display='block';pu.style.display='none';return}
   ob.style.display='none';pu.style.display='block';
@@ -692,7 +726,7 @@ function renderToday(){
   var pct=fp.length>0?Math.round((prayedToday/fp.length)*100):0;
   el.innerHTML=
     '<div class="progress-wrap">'
-    +'<div class="progress-info"><span class="progress-label">Today\'s progress</span><span class="progress-count">'+prayedToday+' of '+fp.length+' prayed for</span></div>'
+    +'<div class="progress-info"><span class="progress-count">'+prayedToday+' of '+fp.length+' prayed for</span></div>'
     +'<div class="progress-bar-bg"><div class="progress-bar-fill" style="width:'+pct+'%"></div></div>'
     +'</div>'
     +'<div class="card featured">'
@@ -801,7 +835,7 @@ async function importList(){
 
 function nxt(){var fp=fltd();if(!fp.length)return;idx=(idx+1)%fp.length;renderToday()}
 function setF(f,btn){flt=f;idx=0;document.querySelectorAll('.pill').forEach(function(b){b.classList.remove('active')});btn.classList.add('active');renderToday()}
-function mkPrayed(id){var p=people.find(function(x){return x.id===id});if(!p)return;p.lastPrayed=new Date().toISOString();save();updStats();renderToday();renderPpl()}
+function mkPrayed(id){var p=people.find(function(x){return x.id===id});if(!p)return;p.lastPrayed=new Date().toISOString();save();updateStreak();updStats();renderStreak();renderToday();renderPpl()}
 function rmP(id){if(!confirm('Remove this person from the prayer list?'))return;people=people.filter(function(x){return x.id!==id});save();updStats();renderPpl();renderToday()}
 
 function addP(){
@@ -865,6 +899,67 @@ function renderWeeklyPrayers(){
   items.innerHTML=(wp.prayers||[]).map(function(p){
     return '<div class="weekly-item"><div class="weekly-dot"></div><div>'+p+'</div></div>';
   }).join('');
+}
+
+function getStreakData(){
+  var raw=localStorage.getItem('tbt-streak');
+  if(raw){try{return JSON.parse(raw);}catch(e){}}
+  return{streak:0,best:0,lastPrayedDate:'',history:[]};
+}
+function saveStreakData(d){localStorage.setItem('tbt-streak',JSON.stringify(d));}
+
+function updateStreak(){
+  var today=new Date().toISOString().slice(0,10);
+  var d=getStreakData();
+  if(d.lastPrayedDate===today)return; // already updated today
+  var yesterday=new Date(Date.now()-86400000).toISOString().slice(0,10);
+  if(d.lastPrayedDate===yesterday){
+    d.streak=(d.streak||0)+1;
+  } else if(d.lastPrayedDate!==today){
+    d.streak=1; // reset — broke the streak
+  }
+  d.best=Math.max(d.best||0,d.streak);
+  d.lastPrayedDate=today;
+  // Keep last 7 days history
+  if(!d.history)d.history=[];
+  if(d.history.indexOf(today)<0)d.history.push(today);
+  if(d.history.length>60)d.history=d.history.slice(-60);
+  saveStreakData(d);
+}
+
+function renderStreak(){
+  var el=document.getElementById('streak-bar');
+  if(!el)return;
+  if(!people.length){el.style.display='none';return;}
+  el.style.display='flex';
+  var d=getStreakData();
+  var streak=d.streak||0;
+  var best=d.best||0;
+  var history=d.history||[];
+  var today=new Date().toISOString().slice(0,10);
+  // Has user prayed today?
+  var prayedToday=people.some(function(p){return p.lastPrayed&&p.lastPrayed.slice(0,10)===today});
+  if(prayedToday&&d.lastPrayedDate!==today){updateStreak();d=getStreakData();streak=d.streak||0;best=d.best||0;}
+  // Build 7-day view
+  var days=['S','M','T','W','T','F','S'];
+  var today_d=new Date();
+  var weekDots='';
+  for(var i=6;i>=0;i--){
+    var d2=new Date(today_d.getTime()-i*86400000);
+    var ds=d2.toISOString().slice(0,10);
+    var dayLbl=days[d2.getDay()];
+    var cls='';
+    if(ds===today){cls=prayedToday?'streak-day done today':'streak-day today';}
+    else if(d2>today_d){cls='streak-day future';}
+    else{cls=history.indexOf(ds)>=0?'streak-day done':'streak-day missed';}
+    weekDots+='<div class="'+cls+'"><span class="streak-day-lbl">'+dayLbl+'</span><span class="streak-day-dot"></span></div>';
+  }
+  var flame=streak>=7?'🔥':streak>=3?'⚡':'🕊';
+  document.getElementById('streak-count').textContent=streak;
+  document.getElementById('streak-label').textContent=streak===1?'day streak':'day streak';
+  document.getElementById('streak-best').textContent='Best: '+best+' days';
+  document.getElementById('streak-flame').textContent=flame;
+  document.getElementById('streak-days').innerHTML=weekDots;
 }
 
 function save(){localStorage.setItem('tbt5',JSON.stringify(people))}
