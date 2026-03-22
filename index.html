@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0050)file:///Users/ndinonzibruce/Downloads/index_3.html -->
+<!-- saved from url=(0050)file:///Users/ndinonzibruce/Downloads/index_4.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -56,14 +56,13 @@ h2{font-size:20px;font-weight:600;margin-bottom:4px}
 .req-dot{width:5px;height:5px;border-radius:50%;background:#d0c9bc;margin-top:7px;flex-shrink:0}
 .note{font-size:13px;color:#9a948a;margin-top:8px;font-style:italic;line-height:1.5}
 .pr-box{margin-top:14px;padding:18px;background:#f5f0e8;border-radius:12px;border-left:3px solid #8a6a2a;display:none}
-.pr-label{font-size:10px;color:#8a6a2a;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.07em;font-weight:700}
-.pr-theme{font-size:12px;font-weight:600;color:#5a3a0a;margin-bottom:8px;text-transform:uppercase;letter-spacing:0.05em}
+.pr-label{font-size:10px;color:#8a6a2a;margin-bottom:8px;text-transform:uppercase;letter-spacing:0.07em;font-weight:700}
 .pr-text{font-size:14px;color:#2a1a08;line-height:2;font-style:italic}
 .actions{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
 .btn{font-size:13px;padding:8px 16px;border:1px solid #d0c9bc;border-radius:10px;background:transparent;cursor:pointer;color:#1a1a18;font-weight:500}
 .btn:hover{background:#f9f8f6}.btn-dark{background:#1a1a18;color:#fff;border-color:#1a1a18}.btn-dark:hover{opacity:0.85}
 .btn-sm{font-size:12px;padding:6px 12px}.btn-danger{color:#8a1a1a;border-color:#f0c0c0}
-.btn-pray{background:#5a3a0a;color:#fff;border-color:#5a3a0a;font-size:12px;padding:6px 12px}
+.btn-pray{background:#5a3a0a;color:#fff;border-color:#5a3a0a;font-size:12px;padding:8px 16px;font-weight:500}
 .btn-pray:hover{opacity:0.85}
 label{font-size:13px;color:#5a5750;display:block;margin-bottom:5px;font-weight:500}
 input,textarea,select{width:100%;font-size:14px;padding:9px 12px;border:1px solid #d0c9bc;border-radius:10px;background:#fff;color:#1a1a18;font-family:inherit;outline:none}
@@ -149,7 +148,7 @@ textarea{min-height:80px;resize:vertical}
           <span class="prog" id="pg">1 of 20</span>
           <button class="btn btn-sm" onclick="nxt()" style="margin-left:8px">Next</button>
         </div>
-        <div id="tc"><div class="card featured"><div class="ph"><div class="av av-3">AB</div><div style="flex:1"><div class="pname">Ava Beil <span class="badge b-cs">CS</span></div><div class="pmeta">All TBT · avalarson610@gmail.com</div></div><span class="badge b-never">Never prayed</span></div><div><div style="font-size:13px;color:#9a948a;padding:8px 0">No specific requests added yet.</div></div><div id="pr-box" class="pr-box"><div class="pr-label">Prayer guide</div><div class="pr-theme" id="pr-theme"></div><div class="pr-text" id="pr-text"></div></div><div class="actions"><button class="btn btn-dark btn-sm" onclick="mkPrayed(&#39;17741417544940.6824287637200372&#39;)">Mark as prayed</button><button class="btn-pray btn" onclick="showPrayer(&#39;17741417544940.6824287637200372&#39;)">Generate prayer guide</button><button class="btn btn-sm" onclick="editP(&#39;17741417544940.6824287637200372&#39;)">Edit</button></div></div></div>
+        <div id="tc"><div class="card featured"><div class="ph"><div class="av av-3">AB</div><div style="flex:1"><div class="pname">Ava Beil <span class="badge b-cs">CS</span></div><div class="pmeta">All TBT · avalarson610@gmail.com</div></div><span class="badge b-never">Never prayed</span></div><div><div style="font-size:13px;color:#9a948a;padding:8px 0">No specific requests added yet.</div></div><div class="pr-box" id="pr-box"><div class="pr-label" id="pr-label"></div><div class="pr-text" id="pr-text"></div></div><div class="actions"><button class="btn btn-dark btn-sm js-prayed" data-id="17741417544940.6824287637200372">Mark as prayed</button><button class="btn btn-pray js-prayer" data-id="17741417544940.6824287637200372">Generate prayer guide</button><button class="btn btn-sm js-edit" data-id="17741417544940.6824287637200372">Edit</button></div></div></div>
       </div>
     </div>
 
@@ -157,13 +156,13 @@ textarea{min-height:80px;resize:vertical}
       <h2>This week</h2>
       <p class="sub">Everyone across 7 days — prayed for at least once a month.</p>
       <div class="sched-grid" id="sg"><div class="sc"><div class="sc-hdr">Sun</div><div class="sc-p"><div class="sc-pn">Anthony Mazzella</div><div class="sc-pr">All TBT</div></div></div><div class="sc"><div class="sc-hdr">Mon</div><div class="sc-p"><div class="sc-pn">Anthony Steiner</div><div class="sc-pr">All TBT</div></div></div><div class="sc"><div class="sc-hdr">Tue</div><div class="sc-p"><div class="sc-pn">Anna Shevock</div><div class="sc-pr">All TBT</div></div></div><div class="sc"><div class="sc-hdr">Wed</div><div class="sc-p"><div class="sc-pn">Asher Handrych</div><div class="sc-pr">All TBT</div></div></div><div class="sc"><div class="sc-hdr">Thu</div><div class="sc-p"><div class="sc-pn">Boaz Reigstad</div><div class="sc-pr">All TBT</div></div></div><div class="sc"><div class="sc-hdr">Fri</div><div class="sc-p"><div class="sc-pn">Caleb Mercer</div><div class="sc-pr">All TBT</div></div></div><div class="sc today"><div class="sc-hdr">Sat</div><div class="sc-p"><div class="sc-pn">Claire Sweeney</div><div class="sc-pr">All TBT</div></div></div></div>
-      <div class="card"><div style="font-size:15px;font-weight:600;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid #e8e4dc">Monthly rotation</div><div id="ri" style="font-size:14px;color:#5a5750;line-height:1.8">With <strong>20 people</strong> across 7 days, each person is prayed for approximately every <strong>3 days</strong> — at least once a month. The rotation prioritises those not prayed for recently.</div></div>
+      <div class="card"><div style="font-size:15px;font-weight:600;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid #e8e4dc">Monthly rotation</div><div id="ri" style="font-size:14px;color:#5a5750;line-height:1.8">With <strong>20 people</strong> across 7 days, each person is prayed for approximately every <strong>3 days</strong> — at least once a month.</div></div>
     </div>
 
     <div class="page" id="p-people">
       <h2>All people</h2><p class="sub">Full TBT prayer list, sorted by who needs prayer most.</p>
       <div style="margin-bottom:16px"><input type="search" placeholder="Search..." oninput="renderPpl(this.value)"></div>
-      <div id="pl"><div class="prow"><div class="av-sm av-3">AB</div><div class="prow-info"><div class="prow-name">Ava Beil</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger" onclick="rmP(&#39;17741417544940.6824287637200372&#39;)">x</button></div><div class="prow"><div class="av-sm av-0">BR</div><div class="prow-info"><div class="prow-name">Brooke Rachau</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger" onclick="rmP(&#39;17741417544960.4955696667904892&#39;)">x</button></div><div class="prow"><div class="av-sm av-0">OE</div><div class="prow-info"><div class="prow-name">Olivia Elias</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger" onclick="rmP(&#39;17741417544970.26396507692494964&#39;)">x</button></div><div class="prow"><div class="av-sm av-2">AY</div><div class="prow-info"><div class="prow-name">Allison Young</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger" onclick="rmP(&#39;17741417544980.4144086438771948&#39;)">x</button></div><div class="prow"><div class="av-sm av-0">GM</div><div class="prow-info"><div class="prow-name">George Morar</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger" onclick="rmP(&#39;17741417544990.031334058137891474&#39;)">x</button></div><div class="prow"><div class="av-sm av-1">TM</div><div class="prow-info"><div class="prow-name">Travis Mills</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger" onclick="rmP(&#39;17741417545000.1839014808009486&#39;)">x</button></div><div class="prow"><div class="av-sm av-3">BM</div><div class="prow-info"><div class="prow-name">Bryce Moldovan</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger" onclick="rmP(&#39;17741417545020.9097749302298475&#39;)">x</button></div><div class="prow"><div class="av-sm av-2">JD</div><div class="prow-info"><div class="prow-name">Jessica Deal</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger" onclick="rmP(&#39;17741417545060.1172692012365385&#39;)">x</button></div><div class="prow"><div class="av-sm av-2">SO</div><div class="prow-info"><div class="prow-name">Sam Osborn</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger" onclick="rmP(&#39;17741417545110.4097119328882438&#39;)">x</button></div><div class="prow"><div class="av-sm av-3">JM</div><div class="prow-info"><div class="prow-name">John Morris</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger" onclick="rmP(&#39;17741417545150.5366048512521657&#39;)">x</button></div><div class="prow"><div class="av-sm av-0">LH</div><div class="prow-info"><div class="prow-name">Lance Hall</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger" onclick="rmP(&#39;17741417545190.8332501308393266&#39;)">x</button></div><div class="prow"><div class="av-sm av-0">AS</div><div class="prow-info"><div class="prow-name">Allison Schrock</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger" onclick="rmP(&#39;17741417545240.5343557291297457&#39;)">x</button></div><div class="prow"><div class="av-sm av-2">AM</div><div class="prow-info"><div class="prow-name">Anthony Mazzella</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger" onclick="rmP(&#39;17741417545290.7868417380203926&#39;)">x</button></div><div class="prow"><div class="av-sm av-0">AS</div><div class="prow-info"><div class="prow-name">Anthony Steiner</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger" onclick="rmP(&#39;17741417545330.29721785135243006&#39;)">x</button></div><div class="prow"><div class="av-sm av-0">AS</div><div class="prow-info"><div class="prow-name">Anna Shevock</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger" onclick="rmP(&#39;17741417545380.362315013173964&#39;)">x</button></div><div class="prow"><div class="av-sm av-1">AH</div><div class="prow-info"><div class="prow-name">Asher Handrych</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger" onclick="rmP(&#39;17741417545420.3009006067323149&#39;)">x</button></div><div class="prow"><div class="av-sm av-0">BR</div><div class="prow-info"><div class="prow-name">Boaz Reigstad</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger" onclick="rmP(&#39;17741417545470.5372795503280225&#39;)">x</button></div><div class="prow"><div class="av-sm av-0">CM</div><div class="prow-info"><div class="prow-name">Caleb Mercer</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger" onclick="rmP(&#39;17741417545520.8446506724425237&#39;)">x</button></div><div class="prow"><div class="av-sm av-2">CS</div><div class="prow-info"><div class="prow-name">Claire Sweeney</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger" onclick="rmP(&#39;17741417545560.01463839181701665&#39;)">x</button></div><div class="prow"><div class="av-sm av-2">CC</div><div class="prow-info"><div class="prow-name">Conner Cerneka</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger" onclick="rmP(&#39;17741417545610.5672596263684483&#39;)">x</button></div></div>
+      <div id="pl"><div class="prow"><div class="av-sm av-3">AB</div><div class="prow-info"><div class="prow-name">Ava Beil</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417544940.6824287637200372">x</button></div><div class="prow"><div class="av-sm av-0">BR</div><div class="prow-info"><div class="prow-name">Brooke Rachau</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417544960.4955696667904892">x</button></div><div class="prow"><div class="av-sm av-0">OE</div><div class="prow-info"><div class="prow-name">Olivia Elias</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417544970.26396507692494964">x</button></div><div class="prow"><div class="av-sm av-2">AY</div><div class="prow-info"><div class="prow-name">Allison Young</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417544980.4144086438771948">x</button></div><div class="prow"><div class="av-sm av-0">GM</div><div class="prow-info"><div class="prow-name">George Morar</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417544990.031334058137891474">x</button></div><div class="prow"><div class="av-sm av-1">TM</div><div class="prow-info"><div class="prow-name">Travis Mills</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417545000.1839014808009486">x</button></div><div class="prow"><div class="av-sm av-3">BM</div><div class="prow-info"><div class="prow-name">Bryce Moldovan</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417545020.9097749302298475">x</button></div><div class="prow"><div class="av-sm av-2">JD</div><div class="prow-info"><div class="prow-name">Jessica Deal</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417545060.1172692012365385">x</button></div><div class="prow"><div class="av-sm av-2">SO</div><div class="prow-info"><div class="prow-name">Sam Osborn</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417545110.4097119328882438">x</button></div><div class="prow"><div class="av-sm av-3">JM</div><div class="prow-info"><div class="prow-name">John Morris</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417545150.5366048512521657">x</button></div><div class="prow"><div class="av-sm av-0">LH</div><div class="prow-info"><div class="prow-name">Lance Hall</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417545190.8332501308393266">x</button></div><div class="prow"><div class="av-sm av-0">AS</div><div class="prow-info"><div class="prow-name">Allison Schrock</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417545240.5343557291297457">x</button></div><div class="prow"><div class="av-sm av-2">AM</div><div class="prow-info"><div class="prow-name">Anthony Mazzella</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417545290.7868417380203926">x</button></div><div class="prow"><div class="av-sm av-0">AS</div><div class="prow-info"><div class="prow-name">Anthony Steiner</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417545330.29721785135243006">x</button></div><div class="prow"><div class="av-sm av-0">AS</div><div class="prow-info"><div class="prow-name">Anna Shevock</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417545380.362315013173964">x</button></div><div class="prow"><div class="av-sm av-1">AH</div><div class="prow-info"><div class="prow-name">Asher Handrych</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417545420.3009006067323149">x</button></div><div class="prow"><div class="av-sm av-0">BR</div><div class="prow-info"><div class="prow-name">Boaz Reigstad</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417545470.5372795503280225">x</button></div><div class="prow"><div class="av-sm av-0">CM</div><div class="prow-info"><div class="prow-name">Caleb Mercer</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417545520.8446506724425237">x</button></div><div class="prow"><div class="av-sm av-2">CS</div><div class="prow-info"><div class="prow-name">Claire Sweeney</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417545560.01463839181701665">x</button></div><div class="prow"><div class="av-sm av-2">CC</div><div class="prow-info"><div class="prow-name">Conner Cerneka</div><div class="prow-meta">All TBT</div></div><span class="badge b-never" style="margin-right:8px">Never prayed</span><button class="btn btn-sm btn-danger js-rm" data-id="17741417545610.5672596263684483">x</button></div></div>
     </div>
 
     <div class="page" id="p-add">
@@ -173,10 +172,10 @@ textarea{min-height:80px;resize:vertical}
         <div class="fg">
           <div class="fr"><div><label>First name *</label><input id="ff" type="text" placeholder="Jordan"></div><div><label>Last name *</label><input id="fl" type="text" placeholder="Smith"></div></div>
           <div class="fr"><div><label>Role</label><select id="fro"><option>Student</option><option>Leader</option><option>Apprentice</option><option>Contact</option><option>Volunteer</option></select></div><div><label>Email</label><input id="fe" type="email" placeholder="jordan@ysu.edu"></div></div>
-          <div><label>Prayer requests (one per line)</label><textarea id="fq" placeholder="e.g. Struggling with doubt about the resurrection
+          <div><label>Prayer requests (one per line)</label><textarea id="fq" placeholder="e.g. Struggling with doubt
 Tension with roommate
-Needs to hear the gospel clearly"></textarea></div>
-          <div><label>Notes / life update</label><textarea id="fn" placeholder="Faith stage, family, recent conversations, what they&#39;re studying..."></textarea></div>
+Needs to hear the gospel"></textarea></div>
+          <div><label>Notes / life update</label><textarea id="fn" placeholder="Faith stage, family, recent conversations..."></textarea></div>
           <button class="btn btn-dark" onclick="addP()">Add to prayer list</button>
         </div>
       </div>
@@ -226,152 +225,43 @@ var VS=[
   'Cast all your anxiety on him because he cares for you. — 1 Pet 5:7',
   'If we ask anything according to his will, he hears us. — 1 John 5:14'
 ];
-
-// Prayer templates — 26 themes, each with a theme name and 2-3 prayer points
-var PRAYERS = [
-  {theme:'Salvation', points:[
-    'That they would see their need for Christ and turn to him in repentance and faith.',
-    'That the gospel would take root deeply — not just head knowledge but heart transformation.',
-    'That any barrier to believing — pride, fear, past hurt — would be broken down by the Spirit.'
-  ]},
-  {theme:'Assurance', points:[
-    'That they would rest in the finished work of Christ and not earn their standing before God.',
-    'That doubts about their salvation would be met by the promises of Scripture.',
-    'That they would know themselves as fully loved, fully forgiven, fully accepted in Christ.'
-  ]},
-  {theme:'Love for Scripture', points:[
-    'That they would grow in love for the Bible — reading it, trusting it, living by it.',
-    'That the Word would be alive to them, not a duty but a delight.',
-    'That they would hunger to understand Scripture and let it reshape how they think.'
-  ]},
-  {theme:'Prayer life', points:[
-    'That they would develop a genuine, consistent prayer life — not just religious habit.',
-    'That they would turn to God first, not last, when life gets hard.',
-    'That prayer would feel like conversation with a Father, not performance before a judge.'
-  ]},
-  {theme:'Church commitment', points:[
-    'That they would find a church home and commit to it beyond just attending TBT.',
-    'That they would see the local church as essential, not optional, to their faith.',
-    'That they would be plugged in, serving, and known — not a consumer in the back row.'
-  ]},
-  {theme:'Discipleship', points:[
-    'That they would be discipled well and hunger to disciple others.',
-    'That they would have a Paul — someone investing in them — and a Timothy they are investing in.',
-    'That multiplication, not just addition, would become their vision for ministry.'
-  ]},
-  {theme:'Gospel friendship', points:[
-    'That they would find deep gospel friendship within TBT and not be isolated.',
-    'That they would have friends who speak truth, not just comfort.',
-    'That loneliness on campus would be replaced by genuine Christian community.'
-  ]},
-  {theme:'Resisting bad influence', points:[
-    'That they would resist the pull of ungodly friendships and compromising situations.',
-    'That they would have the courage to say no when everyone else is saying yes.',
-    'That their faith would be a distinctive witness, not something they hide on campus.'
-  ]},
-  {theme:'Evangelism boldness', points:[
-    'That they would have boldness to share the gospel with friends, roommates, and classmates.',
-    'That fear of rejection would not silence them — that love for people would outweigh comfort.',
-    'That they would see one person come to faith through their witness this year.'
-  ]},
-  {theme:'Mission on campus', points:[
-    'That they would see YSU as their mission field, not just a place to survive.',
-    'That God would give them a deep love for the lost students around them.',
-    'That they would pray for their campus, their dorm, their classes — and then go.'
-  ]},
-  {theme:'Inviting others', points:[
-    'That they would bring at least one friend to Monday Bible Talk this semester.',
-    'That conversations about faith would feel natural, not forced.',
-    'That they would see TBT as something worth sharing, not something to keep private.'
-  ]},
-  {theme:'Sexual purity', points:[
-    'That they would pursue sexual purity in a culture that mocks it.',
-    'That any pattern of sexual sin would be brought into the light and broken by grace.',
-    'That they would find their identity in Christ, not in relationships or physical affirmation.'
-  ]},
-  {theme:'Freedom from addiction', points:[
-    'That they would be free from addiction — pornography, alcohol, social media, or substances.',
-    'That any secret sin they are ashamed of would be met with grace, not condemnation.',
-    'That they would find in Christ what they are looking for in destructive places.'
-  ]},
-  {theme:'Integrity', points:[
-    'That they would grow in integrity — the same person in public and in private.',
-    'That hypocrisy would be replaced by authenticity, performance by genuine faith.',
-    'That their walk would match their talk — that their life would be an open letter.'
-  ]},
-  {theme:'Humility', points:[
-    'That pride, people-pleasing, and comparison would be replaced by true humility.',
-    'That they would be quick to listen, slow to speak, and eager to serve.',
-    'That they would seek to make much of Christ, not much of themselves.'
-  ]},
-  {theme:'Finances', points:[
-    'That God would provide for their financial needs and relieve pressure around money and debt.',
-    'That they would be generous even when it is hard — trusting God as provider.',
-    'That anxiety about tuition, rent, and work would not crowd out trust in God.'
-  ]},
-  {theme:'Future and calling', points:[
-    'That they would have clarity about their future — major, career, and calling.',
-    'That they would hold their plans loosely and follow Christ wherever he leads.',
-    'That they would ask not "what do I want to do?" but "how can I be most useful to God?"'
-  ]},
-  {theme:'Family and home', points:[
-    'That any family tension or difficult home situation would not derail their faith.',
-    'That they would be a light in their family, not just in their Christian community.',
-    'That they would honour their parents even when it is hard.'
-  ]},
-  {theme:'Mental health', points:[
-    'That any anxiety, depression, or loneliness would be met by the peace of Christ.',
-    'That they would not suffer alone — that they would reach out and receive help.',
-    'That their identity would be rooted in who God says they are, not how they feel.'
-  ]},
-  {theme:'Rest and sustainability', points:[
-    'That they would sleep, eat, and rest well — not burning out chasing grades or approval.',
-    'That they would trust God enough to stop — to sabbath, to play, to be still.',
-    'That they would find their worth in Christ, not in productivity or performance.'
-  ]},
-  {theme:'Monday Bible Talk', points:[
-    'That Monday Bible Talk would be the highlight of their week, not just an obligation.',
-    'That what they hear on Mondays would shape how they live Tuesday through Sunday.',
-    'That the community they find on Mondays would sustain them through the week.'
-  ]},
-  {theme:'Academic life', points:[
-    'That they would honour God in their studies — working hard, with integrity.',
-    'That their degree would not become their idol, but a tool for God\'s purposes.',
-    'That they would be known on campus as someone who works with diligence and joy.'
-  ]},
-  {theme:'Perseverance', points:[
-    'That they would not give up on Jesus when faith gets hard or life gets complicated.',
-    'That the trials they face would produce endurance and deepen their trust in God.',
-    'That they would finish this season of life still running — still believing, still growing.'
-  ]},
-  {theme:'Knowing God personally', points:[
-    'That they would not just know about God but know God — personally, intimately, deeply.',
-    'That their faith would be relational, not merely intellectual or moral.',
-    'That they would taste and see that the Lord is good — and find him better than anything else.'
-  ]},
-  {theme:'Responding to the gospel', points:[
-    'That if they have not yet responded to the gospel, this would be their season.',
-    'That the seeds planted in their life through TBT would bear fruit.',
-    'That they would not keep putting off the most important decision of their life.'
-  ]},
-  {theme:'Generosity', points:[
-    'That they would be marked by generosity — with their time, money, and attention.',
-    'That they would hold possessions loosely, knowing everything belongs to God.',
-    'That a spirit of giving would be a distinctive mark of their life on campus.'
-  ]}
+var PRAYERS=[
+  {theme:'Salvation',pts:['That they would see their need for Christ and turn to him in repentance and faith.','That the gospel would take root deeply — not just head knowledge but heart transformation.','That any barrier to believing — pride, fear, past hurt — would be broken down by the Spirit.']},
+  {theme:'Assurance',pts:['That they would rest in the finished work of Christ and not earn their standing before God.','That doubts about their salvation would be met by the promises of Scripture.','That they would know themselves as fully loved, fully forgiven, fully accepted in Christ.']},
+  {theme:'Love for Scripture',pts:['That they would grow in love for the Bible — reading it, trusting it, living by it.','That the Word would be alive to them, not a duty but a delight.','That they would hunger to understand Scripture and let it reshape how they think.']},
+  {theme:'Prayer life',pts:['That they would develop a genuine, consistent prayer life — not just religious habit.','That they would turn to God first, not last, when life gets hard.','That prayer would feel like conversation with a Father, not performance before a judge.']},
+  {theme:'Church commitment',pts:['That they would find a church home and commit to it beyond just attending TBT.','That they would see the local church as essential, not optional, to their faith.','That they would be plugged in, serving, and known — not a consumer in the back row.']},
+  {theme:'Discipleship',pts:['That they would be discipled well and hunger to disciple others.','That they would have a Paul investing in them and a Timothy they are investing in.','That multiplication, not just addition, would become their vision for ministry.']},
+  {theme:'Gospel friendship',pts:['That they would find deep gospel friendship within TBT and not be isolated.','That they would have friends who speak truth, not just comfort.','That loneliness on campus would be replaced by genuine Christian community.']},
+  {theme:'Resisting bad influence',pts:['That they would resist the pull of ungodly friendships and compromising situations.','That they would have the courage to say no when everyone else is saying yes.','That their faith would be a distinctive witness, not something they hide on campus.']},
+  {theme:'Evangelism boldness',pts:['That they would have boldness to share the gospel with friends, roommates, and classmates.','That fear of rejection would not silence them — that love for people would outweigh comfort.','That they would see one person come to faith through their witness this year.']},
+  {theme:'Mission on campus',pts:['That they would see YSU as their mission field, not just a place to survive.','That God would give them a deep love for the lost students around them.','That they would pray for their campus, their dorm, their classes — and then go.']},
+  {theme:'Inviting others',pts:['That they would bring at least one friend to Monday Bible Talk this semester.','That conversations about faith would feel natural, not forced.','That they would see TBT as something worth sharing, not something to keep private.']},
+  {theme:'Sexual purity',pts:['That they would pursue sexual purity in a culture that mocks it.','That any pattern of sexual sin would be brought into the light and broken by grace.','That they would find their identity in Christ, not in relationships or physical affirmation.']},
+  {theme:'Freedom from addiction',pts:['That they would be free from addiction — pornography, alcohol, social media, or substances.','That any secret sin they are ashamed of would be met with grace, not condemnation.','That they would find in Christ what they are looking for in destructive places.']},
+  {theme:'Integrity',pts:['That they would grow in integrity — the same person in public and in private.','That hypocrisy would be replaced by authenticity, performance by genuine faith.','That their walk would match their talk — that their life would be an open letter.']},
+  {theme:'Humility',pts:['That pride, people-pleasing, and comparison would be replaced by true humility.','That they would be quick to listen, slow to speak, and eager to serve.','That they would seek to make much of Christ, not much of themselves.']},
+  {theme:'Finances',pts:['That God would provide for their financial needs and relieve pressure around money and debt.','That they would be generous even when it is hard — trusting God as provider.','That anxiety about tuition, rent, and work would not crowd out trust in God.']},
+  {theme:'Future and calling',pts:['That they would have clarity about their future — major, career, and calling.','That they would hold their plans loosely and follow Christ wherever he leads.','That they would ask not what do I want to do but how can I be most useful to God.']},
+  {theme:'Family and home',pts:['That any family tension or difficult home situation would not derail their faith.','That they would be a light in their family, not just in their Christian community.','That they would honour their parents even when it is hard.']},
+  {theme:'Mental health',pts:['That any anxiety, depression, or loneliness would be met by the peace of Christ.','That they would not suffer alone — that they would reach out and receive help.','That their identity would be rooted in who God says they are, not how they feel.']},
+  {theme:'Rest and sustainability',pts:['That they would sleep, eat, and rest well — not burning out chasing grades or approval.','That they would trust God enough to stop — to sabbath, to play, to be still.','That they would find their worth in Christ, not in productivity or performance.']},
+  {theme:'Monday Bible Talk',pts:['That Monday Bible Talk would be the highlight of their week, not just an obligation.','That what they hear on Mondays would shape how they live Tuesday through Sunday.','That the community they find on Mondays would sustain them through the week.']},
+  {theme:'Academic life',pts:['That they would honour God in their studies — working hard, with integrity.','That their degree would not become their idol, but a tool for God\'s purposes.','That they would be known on campus as someone who works with diligence and joy.']},
+  {theme:'Perseverance',pts:['That they would not give up on Jesus when faith gets hard or life gets complicated.','That the trials they face would produce endurance and deepen their trust in God.','That they would finish this season of life still running — still believing, still growing.']},
+  {theme:'Knowing God personally',pts:['That they would not just know about God but know God — personally, intimately, deeply.','That their faith would be relational, not merely intellectual or moral.','That they would taste and see that the Lord is good — and find him better than anything else.']},
+  {theme:'Responding to the gospel',pts:['That if they have not yet responded to the gospel, this would be their season.','That the seeds planted in their life through TBT would bear fruit.','That they would not keep putting off the most important decision of their life.']},
+  {theme:'Generosity',pts:['That they would be marked by generosity — with their time, money, and attention.','That they would hold possessions loosely, knowing everything belongs to God.','That a spirit of giving would be a distinctive mark of their life on campus.']}
 ];
 
-function pickPrayer(personId, dateStr) {
-  // Deterministic but varied: use person ID + date to pick theme, rotate through 2 points
-  var hash = 0;
-  var s = personId + dateStr;
-  for (var i = 0; i < s.length; i++) { hash = ((hash << 5) - hash) + s.charCodeAt(i); hash |= 0; }
-  var themeIdx = Math.abs(hash) % PRAYERS.length;
-  var theme = PRAYERS[themeIdx];
-  // Pick 2 points
-  var p1 = Math.abs(hash >> 3) % theme.points.length;
-  var p2 = (p1 + 1) % theme.points.length;
-  return { theme: theme.theme, points: [theme.points[p1], theme.points[p2]] };
+function pickPrayer(pid,dateStr){
+  var hash=0,s=pid+dateStr;
+  for(var i=0;i<s.length;i++){hash=((hash<<5)-hash)+s.charCodeAt(i);hash|=0;}
+  var ti=Math.abs(hash)%PRAYERS.length;
+  var t=PRAYERS[ti];
+  var p1=Math.abs(hash>>3)%t.pts.length;
+  var p2=(p1+1)%t.pts.length;
+  return{theme:t.theme,pts:[t.pts[p1],t.pts[p2]]};
 }
 
 var people=JSON.parse(localStorage.getItem('tbt5')||'[]');
@@ -427,40 +317,43 @@ function renderToday(){
     +'<span class="badge '+bc(s)+'">'+pl(p)+'</span></div>'
     +'<div>'+reqs+'</div>'
     +(p.notes?'<div class="note">'+p.notes+'</div>':'')
-    +'<div id="pr-box" class="pr-box"><div class="pr-label">Prayer guide</div><div class="pr-theme" id="pr-theme"></div><div class="pr-text" id="pr-text"></div></div>'
+    +'<div class="pr-box" id="pr-box"><div class="pr-label" id="pr-label"></div><div class="pr-text" id="pr-text"></div></div>'
     +'<div class="actions">'
-    +'<button class="btn btn-dark btn-sm" onclick="mkPrayed(\''+p.id+'\')">Mark as prayed</button>'
-    +'<button class="btn-pray btn" onclick="showPrayer(\''+p.id+'\')">Generate prayer guide</button>'
-    +'<button class="btn btn-sm" onclick="editP(\''+p.id+'\')">Edit</button>'
+    +'<button class="btn btn-dark btn-sm js-prayed" data-id="'+encodeURIComponent(p.id)+'">Mark as prayed</button>'
+    +'<button class="btn btn-pray js-prayer" data-id="'+encodeURIComponent(p.id)+'">Generate prayer guide</button>'
+    +'<button class="btn btn-sm js-edit" data-id="'+encodeURIComponent(p.id)+'">Edit</button>'
     +'</div></div>';
+  // wire up buttons via event listeners (avoids onclick escaping issues)
+  el.querySelector('.js-prayed').addEventListener('click',function(){mkPrayed(decodeURIComponent(this.dataset.id))});
+  el.querySelector('.js-prayer').addEventListener('click',function(){showPrayer(decodeURIComponent(this.dataset.id))});
+  el.querySelector('.js-edit').addEventListener('click',function(){editP(decodeURIComponent(this.dataset.id))});
 }
 
-function showPrayer(id) {
-  var p = people.find(function(x){return x.id===id});
-  if(!p) return;
-  var pr = pickPrayer(p.id, todayStr());
-  // If they have personal requests, lead with those, then add a theme
-  var box = document.getElementById('pr-box');
-  var themeEl = document.getElementById('pr-theme');
-  var textEl = document.getElementById('pr-text');
-  box.style.display = 'block';
-  themeEl.textContent = pr.theme.toUpperCase();
-  // Build prayer text
-  var lines = [];
-  if(p.requests) {
+function showPrayer(id){
+  var p=people.find(function(x){return x.id===id});
+  if(!p)return;
+  var pr=pickPrayer(p.id,todayStr());
+  var box=document.getElementById('pr-box');
+  var lbl=document.getElementById('pr-label');
+  var txt=document.getElementById('pr-text');
+  if(!box)return;
+  lbl.textContent='Prayer guide — '+pr.theme;
+  var lines=[];
+  if(p.requests){
     p.requests.split('\n').filter(function(r){return r.trim()}).forEach(function(r){
-      lines.push('Pray for ' + p.first + ': ' + r);
+      lines.push('<em style="color:#5a3a0a">Pray for '+p.first+':</em> '+r);
     });
-    lines.push('');
+    if(lines.length)lines.push('');
   }
-  pr.points.forEach(function(pt){ lines.push(pt); });
-  textEl.innerHTML = lines.map(function(l){ return l ? '<span>'+l+'</span>' : '<br>'; }).join('<br>');
+  pr.pts.forEach(function(pt){lines.push(pt)});
+  txt.innerHTML=lines.join('<br>');
+  box.style.display='block';
 }
 
 function renderSched(){
   var sc=getSched(),tn=todayName();
   document.getElementById('sg').innerHTML=DA.map(function(d){return'<div class="sc'+(d===tn?' today':'')+'"><div class="sc-hdr">'+d.substring(0,3)+'</div>'+(sc[d]&&sc[d].length?sc[d].map(function(p){return'<div class="sc-p"><div class="sc-pn">'+p.first+' '+p.last+'</div><div class="sc-pr">'+p.role+'</div></div>'}).join(''):'<div style="padding:7px 10px;font-size:11px;color:#9a948a">—</div>')+'</div>'}).join('');
-  document.getElementById('ri').innerHTML='With <strong>'+people.length+' people</strong> across 7 days, each person is prayed for approximately every <strong>'+Math.max(1,Math.ceil(people.length/7))+' days</strong> — at least once a month. The rotation prioritises those not prayed for recently.';
+  document.getElementById('ri').innerHTML='With <strong>'+people.length+' people</strong> across 7 days, each person is prayed for approximately every <strong>'+Math.max(1,Math.ceil(people.length/7))+' days</strong> — at least once a month.';
 }
 
 function renderPpl(q){
@@ -468,7 +361,8 @@ function renderPpl(q){
   var el=document.getElementById('pl');
   if(!people.length){el.innerHTML='<div class="empty">No people yet. Import from Clearstream or add manually.</div>';return}
   var sorted=people.filter(function(p){return !q||(p.first+' '+p.last).toLowerCase().indexOf(q.toLowerCase())>=0}).sort(function(a,b){var o={never:0,due:1,recent:2};return o[ps(a)]-o[ps(b)]});
-  el.innerHTML=sorted.map(function(p){return'<div class="prow"><div class="av-sm av-'+avc(p)+'">'+ini(p)+'</div><div class="prow-info"><div class="prow-name">'+p.first+' '+p.last+'</div><div class="prow-meta">'+p.role+(p.requests?' &middot; '+p.requests.split('\n')[0].substring(0,50):'')+'</div></div><span class="badge '+bc(ps(p))+'" style="margin-right:8px">'+pl(p)+'</span><button class="btn btn-sm btn-danger" onclick="rmP(\''+p.id+'\')">x</button></div>'}).join('');
+  el.innerHTML=sorted.map(function(p){return'<div class="prow"><div class="av-sm av-'+avc(p)+'">'+ini(p)+'</div><div class="prow-info"><div class="prow-name">'+p.first+' '+p.last+'</div><div class="prow-meta">'+p.role+(p.requests?' &middot; '+p.requests.split('\n')[0].substring(0,50):'')+'</div></div><span class="badge '+bc(ps(p))+'" style="margin-right:8px">'+pl(p)+'</span><button class="btn btn-sm btn-danger js-rm" data-id="'+encodeURIComponent(p.id)+'">x</button></div>'}).join('');
+  el.querySelectorAll('.js-rm').forEach(function(btn){btn.addEventListener('click',function(){rmP(decodeURIComponent(this.dataset.id))})});
 }
 
 function renderLists(){
@@ -500,7 +394,7 @@ async function importList(){
       for(var i=0;i<subs.length;i++){
         var s=subs[i];
         if(people.find(function(x){return x.csId===s.id}))continue;
-        people.push({id:Date.now()+''+Math.random(),first:s.first||'',last:s.last||'',role:(s.lists&&s.lists[0])?s.lists[0].name:'Student',email:s.email||'',requests:'',notes:'',lastPrayed:null,csId:s.id});
+        people.push({id:Date.now()+'_'+Math.floor(Math.random()*1000000),first:s.first||'',last:s.last||'',role:(s.lists&&s.lists[0])?s.lists[0].name:'Student',email:s.email||'',requests:'',notes:'',lastPrayed:null,csId:s.id});
         added++;
         await new Promise(function(r){setTimeout(r,1)});
       }
@@ -523,7 +417,7 @@ function rmP(id){if(!confirm('Remove?'))return;people=people.filter(function(x){
 function addP(){
   var first=document.getElementById('ff').value.trim(),last=document.getElementById('fl').value.trim();
   if(!first||!last){alert('Please enter a name.');return}
-  people.push({id:Date.now()+'',first:first,last:last,role:document.getElementById('fro').value,email:document.getElementById('fe').value.trim(),requests:document.getElementById('fq').value.trim(),notes:document.getElementById('fn').value.trim(),lastPrayed:null,csId:null});
+  people.push({id:Date.now()+'_'+Math.floor(Math.random()*1000000),first:first,last:last,role:document.getElementById('fro').value,email:document.getElementById('fe').value.trim(),requests:document.getElementById('fq').value.trim(),notes:document.getElementById('fn').value.trim(),lastPrayed:null,csId:null});
   save();updStats();renderPpl();renderToday();renderSched();
   ['ff','fl','fe','fq','fn'].forEach(function(id){document.getElementById(id).value=''});
   var t=document.getElementById('at');t.style.display='block';setTimeout(function(){t.style.display='none'},2500);
@@ -550,9 +444,8 @@ function buildEmail(){
     b+=(i+1)+'. '+p.first+' '+p.last+' ('+p.role+')\n';
     if(p.requests)p.requests.split('\n').filter(function(r){return r.trim()}).forEach(function(r){b+='   - '+r+'\n'});
     var pr=pickPrayer(p.id,todayStr());
-    b+='   Theme: '+pr.theme+'\n';
-    b+='   '+pr.points[0]+'\n';
-    b+='\n';
+    b+='   Prayer theme: '+pr.theme+'\n';
+    b+='   '+pr.pts[0]+'\n\n';
   });
   return b+'"Devote yourselves to prayer, being watchful and thankful." - Col 4:2\n\n- Bruce';
 }
